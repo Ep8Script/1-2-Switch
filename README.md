@@ -1,4 +1,4 @@
-# 1-2-Switch
+ # 1-2-Switch
 *1-2-Switch* recreation project using Microsoft Small Basic.
 
 # Requirements
@@ -28,7 +28,7 @@
   * Minor bug fixes
 * [v1.2](https://www.reddit.com/r/nintendo/comments/64aq9o/12switch_partially_recreated_in_small_basic/)
   * Added Fake Draw
-  * Hid mouse in game window
+  * Hid mouse in game window 
   * Forced both players to press B before playing minigame
     * Added "OK" text
   * Added Wiimote vibration when shooting in certain minigames using GlovePIE
@@ -46,7 +46,7 @@
     * "Fire" appears more vibrant
     * Various other places
   * Changed some images
-  * Added version number in title
+  * Version number now appears in title
   * Changes to Fake Draw randomiser
     * Less likely to repeat the same words
     * Shorter time between random words
