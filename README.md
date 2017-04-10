@@ -39,7 +39,7 @@
 * v1.3
   * Removed vibration effects from GlovePIE
   * Detected specific mouse movement in GlovePIE script
-  * Now frequently change mouse position in SB script, triggering vibration in Wiimotes at certain points in GlovePIE
+  * Now frequently change mouse position in SB script, triggering vibration in Wiimotes at important moments in GlovePIE
   * Added animations for smoother experience
     * Win/Lose screen more closely represents actual game
     * Disqualified screen animation added
@@ -51,3 +51,4 @@
     * Less likely to repeat the same words
     * Shorter time between random words
     * Word read aloud before image shows up
+  * Added "Quick Draw" voice when selected
