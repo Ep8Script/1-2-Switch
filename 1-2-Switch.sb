@@ -1,0 +1,1313 @@
+GraphicsWindow.BackgroundColor = "Black"
+GraphicsWindow.Height = Desktop.Height
+GraphicsWindow.Width = Desktop.Width
+GraphicsWindow.Top = 0
+GraphicsWindow.Left = 0
+GraphicsWindow.CanResize = "True"
+GraphicsWindow.Title = "1-2-Switch"
+Mouse.HideCursor()
+main:
+GraphicsWindow.Clear()
+GraphicsWindow.DrawImage(Program.Directory + "\main.jpg",25,0)
+Sound.Play(Program.Directory + "\title.mp3")
+GraphicsWindow.KeyDown = go
+GraphicsWindow.MouseDown = go1
+Sub go
+  If GraphicsWindow.LastKey="A" Then
+    gotomenu = 1
+  EndIf
+endsub
+Sub go1
+  gotomenu = 1
+Endsub
+While 1 = 1
+  If gotomenu = 1 then
+    gotomenu = 0
+    Sound.Stop(Program.Directory + "\title.mp3")
+    Sound.PlayClick()
+    Goto shaketitle
+  EndIf
+endwhile
+
+quickmenu:
+Shapes.Remove(img)
+Shapes.Remove(img2)
+Shapes.Remove(move)
+Shapes.Remove(move2)
+GraphicsWindow.DrawImage(Program.Directory + "\background.jpg",0,0)
+Sound.Play(Program.Directory + "\gunmen.mp3")
+GraphicsWindow.KeyDown = shakemenu
+GraphicsWindow.MouseDown = shakemenu1
+Sub shakemenu
+  If GraphicsWindow.LastKey="A" Then
+    gotoquick = 1
+  ElseIf GraphicsWindow.LastKey="Left" then
+    gotoshake = 1
+  ElseIf GraphicsWindow.LastKey="Right" then
+    playfake = 1
+  ElseIf GraphicsWindow.LastKey="C" then
+    back = 1
+  EndIf
+endsub
+Sub shakemenu1
+  gotoquick = 1
+Endsub
+While 1 = 1
+  If gotoquick = 1 then
+    gotoquick = 0
+    Sound.Stop(Program.Directory + "\gunmen.mp3")
+    Sound.PlayClick()
+    Goto quicktitle
+  ElseIf gotoshake = 1 then
+    gotoshake = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\gunmen.mp3")
+    GraphicsWindow.Clear()
+    screen2 = Shapes.AddImage(Program.Directory + "\background.jpg")
+    Shapes.HideShape(screen)
+    screen = Shapes.AddImage(Program.Directory + "\soda logo.png")
+    Shapes.HideShape(screen2)
+    Shapes.Move(screen,-1400,0)
+    Shapes.ShowShape(screen)
+    Shapes.ShowShape(screen2)
+    Shapes.Move(screen2,0,0)
+    Shapes.Animate(screen,0,0,1000)
+    Shapes.Animate(screen2,1400,0,1000)
+    Program.Delay(1200)
+    Goto shaketitle
+  ElseIf playfake = 1 then
+    playfake = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\gunmen.mp3")
+    GraphicsWindow.Clear()
+    moving = Shapes.AddImage(Program.Directory + "\fakedraw.png")
+    Shapes.HideShape(moving)
+    moving2 = Shapes.AddImage(Program.Directory + "\background.jpg")
+    Shapes.HideShape(moving2)
+    Shapes.Move(moving,1400,0)
+    Shapes.ShowShape(moving)
+    Shapes.ShowShape(moving2)
+    Shapes.Move(moving2,0,0)
+    Shapes.Animate(moving,0,0,1000)
+    Shapes.Animate(moving2,-1400,0,1000)
+    Program.Delay(1200)
+    Goto fakemenu
+  elseif back = 1 then
+    back = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\gunmen.mp3")
+    Goto main
+  EndIf
+endwhile
+
+quicktitle:
+GraphicsWindow.DrawImage(Program.Directory + "\screen.png",0,0)
+Sound.Play(Program.Directory + "\Music.mp3")
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 150
+okay1 = Shapes.AddText("OK")
+Shapes.HideShape(okay1)
+Shapes.Move(okay1,180,430)
+okay2 = Shapes.AddText("OK")
+Shapes.HideShape(okay2)
+Shapes.Move(okay2,880,430)
+GraphicsWindow.KeyDown = quick
+Sub quick
+  If GraphicsWindow.LastKey="X" Then
+    Shapes.ShowShape(okay1)
+    Sound.Play(Program.Directory + "\click.mp3")
+    Mouse.MouseX = 45
+    Mouse.MouseY = 212
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Sound.Stop(Program.Directory + "\click.mp3")
+    GraphicsWindow.KeyDown = ok
+    GraphicsWindow.KeyUp = nothing
+  ElseIf GraphicsWindow.LastKey="Z" then
+    Shapes.ShowShape(okay2)
+    Sound.Play(Program.Directory + "\click.mp3")
+    Mouse.MouseX = 30
+    Mouse.MouseY = 324
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Sound.Stop(Program.Directory + "\click.mp3")
+    GraphicsWindow.KeyDown = okk
+    GraphicsWindow.KeyUp = nothing
+  ElseIf GraphicsWindow.LastKey="O" Then
+    back = 1
+  EndIf
+endsub
+
+Sub ok
+  If GraphicsWindow.LastKey="Z" Then
+    Sound.Play(Program.Directory + "\click.mp3")
+    Mouse.MouseX = 30
+    Mouse.MouseY = 324
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Sound.Stop(Program.Directory + "\click.mp3")
+    Shapes.ShowShape(okay2)
+    GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
+    Program.Delay(1000)
+    start = 1
+  EndIf
+EndSub
+
+Sub okk
+  If GraphicsWindow.LastKey="X" then
+    Sound.Play(Program.Directory + "\click.mp3")
+    Mouse.MouseX = 45
+    Mouse.MouseY = 212
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Sound.Stop(Program.Directory + "\click.mp3")
+    Shapes.ShowShape(okay1)
+    GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
+    Program.Delay(1000)
+    start = 1
+  EndIf
+EndSub
+
+Sub nothing
+EndSub
+
+While 1 = 1
+  If start = 1 then
+    start = 0
+    Goto quick
+  ElseIf back = 1 Then
+    back = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\Music.mp3")
+    Goto quickmenu
+  EndIf
+endwhile
+  
+quick:
+Sound.Stop(Program.Directory + "\Music.mp3")
+Program.Delay(100)
+Sound.Play(Program.Directory + "\lower.mp3")
+Shapes.Remove(okay1)
+Shapes.Remove(okay2)
+qlr()
+lower:
+Sound.Play(Program.Directory + "\ready.mp3")
+GraphicsWindow.KeyDown = fire
+GraphicsWindow.BrushColor = "White"
+GraphicsWindow.FontSize = 60
+num = 1
+While (num < 30000)
+  num = num + 1
+  GraphicsWindow.DrawText(50000,50000,num)
+  If one = 1 Then
+    Mouse.MouseX = 75
+    Mouse.MouseY = 221
+    Sound.Play(Program.Directory + "\shot.mp3")
+    one = 0
+    Sound.Stop(Program.Directory + "\ready.mp3")
+    Goto earlyone
+  EndIf
+  If two = 1 Then
+    Mouse.MouseX = 60
+    Mouse.MouseY = 244
+    Sound.Play(Program.Directory + "\shot.mp3")
+    two = 0
+    Sound.Stop(Program.Directory + "\ready.mp3")
+    Goto earlytwo
+  EndIf
+EndWhile
+Sound.Play(Program.Directory + "\fire.mp3")
+Program.Delay(100)
+fireit()
+If played = 1 then
+i = 0
+endif
+Timer.Interval = 10
+Timer.Tick = next
+
+While 1 = 1
+  If one = 1 Then
+    Mouse.MouseX = 75
+    Mouse.MouseY = 221
+    Sound.Play(Program.Directory + "\shot.mp3")
+    onetime = (i + " seconds")
+    onescore = i
+    one = 0
+    Goto second
+  EndIf
+  If two = 1 Then
+    Mouse.MouseX = 60
+    Mouse.MouseY = 244
+    Sound.Play(Program.Directory + "\shot.mp3")
+    twotime = (i + " seconds")
+    twoscore = i
+    two = 0
+    Goto first
+  EndIf
+EndWhile
+first:
+GraphicsWindow.KeyDown = fire
+While 1 = 1
+  If one = 1 Then
+    Mouse.MouseX = 75
+    Mouse.MouseY = 221
+    Sound.Play(Program.Directory + "\gun.mp3")
+    onetime = (i + " seconds")
+    onescore = i
+    one = 0
+    Goto final
+  EndIf
+EndWhile
+second:
+GraphicsWindow.KeyDown = fire
+While 1 = 1
+  If two = 1 Then
+    Mouse.MouseX = 60
+    Mouse.MouseY = 244
+    Sound.Play(Program.Directory + "\gun.mp3")
+    twotime = (i + " seconds")
+    twoscore = i
+    two = 0  
+    Goto final
+  EndIf
+EndWhile
+final:
+Program.Delay(3000)
+Sound.Stop(Program.Directory + "\ready.mp3")
+If onescore = twoscore then
+  GraphicsWindow.BrushColor = "White"
+  GraphicsWindow.FontSize = 150
+  draw = Shapes.AddText("DRAW")
+  Shapes.Move(draw,430,-200)
+  Shapes.HideShape(draw)
+  GraphicsWindow.DrawImage(Program.Directory + "\drawquick.png",0,0)
+  Program.Delay(2000)
+  Shapes.ShowShape(draw)
+  Shapes.Animate(draw,430,200,2000)
+  Sound.Play(Program.Directory + "\final.mp3")
+  Program.Delay(2000)
+  Goto quickending
+endif
+Sound.Play(Program.Directory + "\final.mp3")
+If twoscore > onescore then
+  Mouse.MouseX = 4
+  Mouse.MouseY = 653
+  Program.Delay(800)
+  Mouse.MouseX = 1000
+  Mouse.MouseY = 1000
+  winlose()
+  Sound.Play(Program.Directory + "\ending.mp3")
+  timeone = Shapes.AddText(onetime)
+  Shapes.HideShape(onetime)
+  Shapes.Move(timeone,750,1000)
+  timetwo = Shapes.AddText(twotime)
+  Shapes.Move(timetwo,150,1000)
+  Shapes.HideShape(twotime)
+  Program.Delay(500)
+  Shapes.ShowShape(timeone)
+  Shapes.ShowShape(timetwo)
+  Shapes.Animate(timeone,750,450,1000)
+  Shapes.Animate(timetwo,150,450,1000)
+  Goto quickending
+Else
+  Mouse.MouseX = 30
+  Mouse.MouseY = 136
+  Program.Delay(800)
+  Mouse.MouseX = 1000
+  Mouse.MouseY = 1000
+  winlose2()
+  Sound.Play(Program.Directory + "\ending.mp3")
+  timeone = Shapes.AddText(onetime)
+  Shapes.Move(timeone,750,1000)
+  Shapes.HideShape(onetime)
+  timetwo = Shapes.AddText(twotime)
+  Shapes.HideShape(twotime)
+  Shapes.Move(timetwo,150,1000)
+  Program.Delay(500)
+  Shapes.ShowShape(timeone)
+  Shapes.ShowShape(timetwo)
+  Shapes.Animate(timeone,750,450,1000)
+  Shapes.Animate(timetwo,150,450,1000)
+  Goto quickending
+EndIf
+
+Sub winlose
+  For u = 0 To 113
+    GraphicsWindow.DrawImage(Program.Directory + "\one\" + u + ".png",0,0)
+  EndFor
+EndSub
+
+Sub winlose2
+  For w = 0 To 114
+    GraphicsWindow.DrawImage(Program.Directory + "\two\" + w + ".png",0,0)
+  EndFor
+EndSub
+
+Sub next
+  i = i + .010
+EndSub
+
+Sub fireit
+  For n = 1 To 11
+    GraphicsWindow.DrawImage(Program.Directory + "\fire\" + n + ".png",0,0)
+  EndFor
+  GraphicsWindow.DrawImage(Program.Directory + "\fire.png",0,0)
+EndSub
+
+Sub fire
+  If GraphicsWindow.LastKey="V" Then
+    one = 1
+  ElseIf GraphicsWindow.LastKey="B" Then
+    two = 1
+  EndIf
+EndSub
+
+quickending:
+Sound.Stop(Program.Directory + "\lower.mp3")
+Program.Delay(500)
+GraphicsWindow.FontSize = 30
+home = Shapes.AddImage(Program.Directory + "\home.png")
+gohome = Shapes.AddText("Press the Home Button")
+Shapes.Move(home,400,600)
+Shapes.HideShape(home)
+Shapes.SetOpacity(home,0)
+Shapes.ShowShape(home)
+Shapes.HideShape(gohome)
+Shapes.Move(gohome,500,630)
+Shapes.SetOpacity(gohome,0)
+Shapes.ShowShape(gohome)
+Program.Delay(100)
+Shapes.SetOpacity(home,10)
+Shapes.SetOpacity(gohome,10)
+Program.Delay(100)
+Shapes.SetOpacity(home,30)
+Shapes.SetOpacity(gohome,30)
+Program.Delay(100)
+Shapes.SetOpacity(home,50)
+Shapes.SetOpacity(gohome,50)
+Program.Delay(100)
+Shapes.SetOpacity(home,60)
+Shapes.SetOpacity(gohome,60)
+Program.Delay(100)
+Shapes.SetOpacity(home,80)
+Shapes.SetOpacity(gohome,80)
+Program.Delay(100)
+Shapes.SetOpacity(home,100)
+Shapes.SetOpacity(gohome,100)
+GraphicsWindow.KeyDown = restart
+GraphicsWindow.MouseDown = restart1
+Sub restart
+  If GraphicsWindow.LastKey="H" Then
+    goback = 1
+  EndIf
+EndSub
+Sub restart1
+  goback = 1
+EndSub
+While 1 = 1
+  If goback = 1 Then
+    goback = 0
+    GraphicsWindow.Clear()
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\final.mp3")
+    Sound.Stop(Program.Directory + "\fire.mp3")
+    Sound.Stop(Program.Directory + "\shot.mp3")
+    Sound.Stop(Program.Directory + "\gun.mp3")
+    Sound.Stop(Program.Directory + "\ending.mp3")
+    played = 1
+    Goto quickmenu
+  EndIf
+EndWhile
+
+Sub qlr
+  For n = 177 To 318
+    GraphicsWindow.DrawImage(Program.Directory + "\qlr\" + n + ".png",0,0)
+  EndFor
+EndSub
+
+shaketitle:
+Shapes.Remove(screen)
+Shapes.Remove(screen2)
+GraphicsWindow.DrawImage(Program.Directory + "\soda logo.png",0,0)
+Sound.Play(Program.Directory + "\shake.mp3")
+GraphicsWindow.KeyDown = sodamenu
+GraphicsWindow.MouseDown = sodamenu1
+Sub sodamenu
+  If GraphicsWindow.LastKey="A" Then
+    gotosoda = 1
+  ElseIf GraphicsWindow.LastKey="Right" then
+    playquick = 1
+  elseif GraphicsWindow.LastKey="C" then
+    back = 1
+  EndIf
+endsub
+Sub sodamenu1
+  gotosoda = 1
+Endsub
+While 1 = 1
+  If gotosoda = 1 then
+    gotosoda = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\shake.mp3")
+    Goto sodatitle
+  ElseIf playquick = 1 then
+    playquick = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\shake.mp3")
+    GraphicsWindow.Clear()
+    img = Shapes.AddImage(Program.Directory + "\background.jpg")
+    Shapes.HideShape(img)
+    img2 = Shapes.AddImage(Program.Directory + "\soda logo.png")
+    Shapes.HideShape(img2)
+    Shapes.Move(img,1400,0)
+    Shapes.ShowShape(img)
+    Shapes.ShowShape(img2)
+    Shapes.Move(img2,0,0)
+    Shapes.Animate(img,0,0,1000)
+    Shapes.Animate(img2,-1400,0,1000)
+    Program.Delay(1200)
+    Goto quickmenu
+  ElseIf back = 1 then
+  back = 0
+  Sound.PlayClick()
+  Sound.Stop(Program.Directory + "\shake.mp3")
+  Goto main
+  EndIf
+endwhile
+earlyone:
+GraphicsWindow.DrawImage(Program.Directory + "\two.jpg",0,0)
+GraphicsWindow.DrawText(800,500,"Quick trigger")
+Sound.PlayAndWait(Program.Directory + "\early.mp3")
+Sound.Stop(Program.Directory + "\fire.mp3")
+Sound.Stop(Program.Directory + "\shot.mp3")
+Sound.Stop(Program.Directory + "\gun.mp3")
+GraphicsWindow.DrawImage(Program.Directory + "\game.png",0,0)
+Program.Delay(100)
+Sound.PlayAndWait(Program.Directory + "\lower2.mp3")
+one = 0
+two = 0
+Goto lower
+
+earlytwo:
+GraphicsWindow.DrawImage(Program.Directory + "\one.jpg",0,0)
+GraphicsWindow.DrawText(100,500,"Quick trigger")
+Sound.PlayAndWait(Program.Directory + "\early.mp3")
+Sound.Stop(Program.Directory + "\fire.mp3")
+Sound.Stop(Program.Directory + "\shot.mp3")
+Sound.Stop(Program.Directory + "\gun.mp3")
+GraphicsWindow.DrawImage(Program.Directory + "\game.png",0,0)
+Program.Delay(100)
+Sound.PlayAndWait(Program.Directory + "\lower2.mp3")
+one = 0
+two = 0
+Goto lower 
+
+sodatitle:
+GraphicsWindow.DrawImage(Program.Directory + "\soda.jpg",0,0)
+Sound.Play(Program.Directory + "\soda.mp3")
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 150
+okay3 = Shapes.AddText("OK")
+Shapes.HideShape(okay3)
+Shapes.Move(okay3,800,470)
+GraphicsWindow.KeyDown = shake
+Sub shake
+  If GraphicsWindow.LastKey="Z" Then
+    Sound.Play(Program.Directory + "\click.mp3")
+    Mouse.MouseX = 30
+    Mouse.MouseY = 324
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Sound.Stop(Program.Directory + "\click.mp3")
+    Shapes.ShowShape(okay3)
+    GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
+    Program.Delay(1000)
+    start = 1
+  ElseIf GraphicsWindow.LastKey="O" Then
+    back = 1
+  EndIf
+endsub
+
+While 1 = 1
+  If start = 1 then
+    start = 0
+    Sound.Stop(Program.Directory + "\soda.mp3")
+    Shapes.HideShape(okay3)
+    Goto sodasplash
+  ElseIf back = 1 Then
+    back = 0
+    Sound.Stop(Program.Directory + "\soda.mp3")
+    Sound.PlayClick()
+    Goto shaketitle
+  EndIf
+endwhile
+sodasplash:
+GraphicsWindow.BrushColor = "White"
+GraphicsWindow.FontSize = 60
+remote = Shapes.AddImage(Program.Directory + "/wiimote.png")
+Shapes.HideShape(remote)
+shake = Shapes.AddText("Shake that soda!")
+Shapes.HideShape(shake)
+GraphicsWindow.DrawImage(Program.Directory + "\sodashake.png",0,0)
+Program.Delay(200)
+Sound.Play(Program.Directory + "\intro.mp3")
+Program.Delay(3500)
+screenevents()
+ready = Shapes.AddText("Ready!")
+shapes.HideShape(ready)
+Shapes.Move(ready,550,300)
+Shapes.ShowShape(ready)
+Program.Delay(1000)
+fadeready()
+Program.Delay(100)
+up = Shapes.AddText("Shake it up")
+shapes.HideShape(up)
+pass = Shapes.AddText("and pass it on!")
+shapes.HideShape(pass)
+Shapes.Move(up,490,220)
+Shapes.Move(pass,450,300)
+Program.Delay(10)
+Shapes.ShowShape(up)
+Shapes.ShowShape(pass)
+Program.Delay(500)
+GraphicsWindow.FontSize = 80
+Shapes.Remove(up)
+Shapes.Remove(pass)
+Program.Delay(10)
+up = Shapes.AddText("Shake it up")
+shapes.HideShape(up)
+pass = Shapes.AddText("and pass it on!")
+shapes.HideShape(pass)
+Shapes.Move(up,490,220)
+Shapes.Move(pass,450,300)
+Program.Delay(10)
+Shapes.ShowShape(up)
+Shapes.ShowShape(pass)
+Program.Delay(1000)
+GraphicsWindow.FontSize = 100
+Shapes.Remove(up)
+Shapes.Remove(pass)
+Program.Delay(20)
+up = Shapes.AddText("Shake it up")
+shapes.HideShape(up)
+pass = Shapes.AddText("and pass it on!")
+shapes.HideShape(pass)
+Shapes.Move(up,490,220)
+Shapes.Move(pass,450,330)
+Program.Delay(10)
+Shapes.ShowShape(up)
+Shapes.ShowShape(pass)
+GraphicsWindow.FontSize = 120
+Program.Delay(1000)
+Shapes.Remove(up)
+Shapes.Remove(pass)
+start1 = Shapes.AddText("Start!")
+shapes.HideShape(start1)
+Shapes.Move(start1,490,270)
+Program.Delay(10)
+Shapes.ShowShape(start1)
+Program.Delay(500)
+fadestart()
+rand = Math.GetRandomNumber(80)
+While rand < 40
+  rand = Math.GetRandomNumber(80)
+EndWhile
+GraphicsWindow.DrawImage(Program.Directory + "\watch.png",0,0)
+Timer.Interval = rand * 1000
+Timer.Tick = OnTimerTick
+shakeagain:
+GraphicsWindow.KeyDown = burst
+repeat = 1
+
+While 1 = 1
+  If repeat = 1 then
+    repeat = 0
+    Goto shakeagain
+  EndIf
+EndWhile
+
+Sub burst
+  If GraphicsWindow.LastKey="Space" Then
+    Sound.Play(Program.Directory + "\shaking.mp3")
+  EndIf
+endSub
+
+Sub OnTimerTick
+  thisnumber = 0
+  TextWindow.WriteLine("Done!")
+EndSub
+
+Sub screenevents
+  Shapes.Move(shake,"-1000",4)
+  Shapes.ShowShape(shake)
+  Shapes.Animate(shake,400,4,2000)
+  Shapes.Move(remote,200,100)
+  Shapes.ShowShape(remote)
+  Program.Delay(2000)
+  Shapes.Animate(remote,200,200,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,150,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,250,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,50,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,100,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,250,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,100,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,200,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,250,250,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,100,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,200,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,100,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,250,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,100,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,250,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,100,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,250,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,100,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,250,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,100,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,250,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,100,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,250,100)
+  Program.Delay(100)
+  Shapes.Animate(remote,200,100,100)
+  Program.Delay(200)
+  Shapes.Remove(remote)
+  Shapes.SetOpacity(shake,90)
+  Program.Delay(100)
+  Shapes.SetOpacity(shake,60)
+  Program.Delay(100)
+  Shapes.SetOpacity(shake,40)
+  Program.Delay(100)
+  Shapes.SetOpacity(shake,20)
+  Program.Delay(100)
+  Shapes.SetOpacity(shake,0)
+EndSub
+
+Sub fadeready
+  Shapes.SetOpacity(ready,90)
+  Program.Delay(100)
+  Shapes.SetOpacity(ready,60)
+  Program.Delay(100)
+  Shapes.SetOpacity(ready,40)
+  Program.Delay(100)
+  Shapes.SetOpacity(ready,20)
+  Program.Delay(100)
+  Shapes.SetOpacity(ready,0)
+EndSub
+
+Sub fadestart
+  Shapes.SetOpacity(start1,90)
+  Program.Delay(100)
+  Shapes.SetOpacity(start1,60)
+  Program.Delay(100)
+  Shapes.SetOpacity(start1,40)
+  Program.Delay(100)
+  Shapes.SetOpacity(start1,20)
+  Program.Delay(100)
+  Shapes.SetOpacity(start1,0)
+EndSub
+  
+fakemenu:
+Shapes.Remove(moving)
+Shapes.Remove(moving2)
+GraphicsWindow.DrawImage(Program.Directory + "\fakedraw.png",0,0)
+Sound.Play(Program.Directory + "\gunmen.mp3")
+GraphicsWindow.KeyDown = fakemenu
+GraphicsWindow.MouseDown = fakemenu1
+Sub fakemenu
+  If GraphicsWindow.LastKey="A" Then
+    gotofake = 1
+  ElseIf GraphicsWindow.LastKey="Left" then
+    gotoquickdraw = 1
+  ElseIf GraphicsWindow.LastKey="C" then
+    back = 1
+  EndIf
+endsub
+Sub fakemenu1
+  gotofake = 1
+Endsub
+While 1 = 1
+  If gotofake = 1 then
+    gotofake = 0
+    Sound.Stop(Program.Directory + "\gunmen.mp3")
+    Sound.PlayClick()
+    Goto faketitle
+  ElseIf gotoquickdraw = 1 then
+    gotoquickdraw = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\gunmen.mp3")
+    GraphicsWindow.Clear()
+    move2 = Shapes.AddImage(Program.Directory + "\fakedraw.png")
+    Shapes.HideShape(move)
+    move = Shapes.AddImage(Program.Directory + "\background.jpg")
+    Shapes.HideShape(move2)
+    Shapes.Move(move,-1400,0)
+    Shapes.ShowShape(move)
+    Shapes.ShowShape(move2)
+    Shapes.Move(move2,0,0)
+    Shapes.Animate(move,0,0,1000)
+    Shapes.Animate(move2,1400,0,1000)
+    Program.Delay(1200)
+    Goto quickmenu
+  elseif back = 1 then
+    back = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\gunmen.mp3")
+    Goto main
+  EndIf
+endwhile
+  
+faketitle:
+gotofake = 0
+GraphicsWindow.DrawImage(Program.Directory + "\faketitle.png",0,0)
+Sound.Play(Program.Directory + "\fakedraw.mp3")
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 150
+okay4 = Shapes.AddText("OK")
+Shapes.HideShape(okay4)
+Shapes.Move(okay4,180,430)
+okay5 = Shapes.AddText("OK")
+Shapes.HideShape(okay5) 
+Shapes.Move(okay5,880,430)
+GraphicsWindow.KeyDown = fake
+Sub fake
+  If GraphicsWindow.LastKey="X" Then
+    Shapes.ShowShape(okay4)
+    Sound.Play(Program.Directory + "\click.mp3")
+    Mouse.MouseX = 45
+    Mouse.MouseY = 212
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Sound.Stop(Program.Directory + "\click.mp3")
+    GraphicsWindow.KeyDown = okay
+    GraphicsWindow.KeyUp = donothing
+  ElseIf GraphicsWindow.LastKey="Z" then
+    Shapes.ShowShape(okay5)
+    Sound.Play(Program.Directory + "\click.mp3")
+    Mouse.MouseX = 30
+    Mouse.MouseY = 324
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Sound.Stop(Program.Directory + "\click.mp3")
+    GraphicsWindow.KeyDown = okayy
+    GraphicsWindow.KeyUp = donothing
+  ElseIf GraphicsWindow.LastKey="O" Then
+    back = 1
+  EndIf
+endsub
+
+Sub okay
+  If GraphicsWindow.LastKey="Z" Then
+    Sound.Play(Program.Directory + "\click.mp3")
+    Mouse.MouseX = 30
+    Mouse.MouseY = 324
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Sound.Stop(Program.Directory + "\click.mp3")
+    Shapes.ShowShape(okay5)
+    GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
+    Program.Delay(1000)
+    start = 1
+  EndIf
+EndSub
+
+Sub okayy
+  If GraphicsWindow.LastKey="X" then
+    Sound.Play(Program.Directory + "\click.mp3")
+    Mouse.MouseX = 45
+    Mouse.MouseY = 212
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Sound.Stop(Program.Directory + "\click.mp3")
+    Shapes.ShowShape(okay4)
+    GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
+    Program.Delay(1000)
+    start = 1
+  EndIf
+EndSub
+
+Sub donothing
+EndSub
+
+While 1 = 1
+  If start = 1 then
+    Sound.Stop(Program.Directory + "\fakedraw.mp3")
+    start = 0
+    Goto fake
+  ElseIf back = 1 then
+    back = 0
+    Sound.Stop(Program.Directory + "\fakedraw.mp3")
+    Sound.PlayClick()
+    Goto fakemenu
+  EndIf
+endwhile
+  
+fake:
+Sound.Stop(Program.Directory + "\fakedraw.mp3")
+firednow = 0
+Program.Delay(100)
+Sound.Play(Program.Directory + "\lower.mp3")
+Shapes.Remove(okay4)
+Shapes.Remove(okay5)
+flr()
+low:
+Sound.Play(Program.Directory + "\ready.mp3")
+GraphicsWindow.KeyDown = shoot
+GraphicsWindow.BrushColor = "White"
+GraphicsWindow.FontSize = 60
+num = 1
+While (num < 40000)
+  num = num + 1
+  GraphicsWindow.DrawText(50000,50000,num)
+  If one1 = 1 Then
+    Mouse.MouseX = 75
+    Mouse.MouseY = 221
+    Sound.Play(Program.Directory + "\shot.mp3")
+    one1 = 0
+    Sound.Stop(Program.Directory + "\ready.mp3")
+    Goto early1
+  EndIf
+  If two1 = 1 Then
+    Mouse.MouseX = 60
+    Mouse.MouseY = 244
+    Sound.Play(Program.Directory + "\gun.mp3")
+    two1 = 0
+    Sound.Stop(Program.Directory + "\ready.mp3")
+    Goto early2
+  EndIf
+EndWhile
+ran = Math.GetRandomNumber(10)
+GraphicsWindow.KeyDown = shoot
+While firednow = 0
+  If ran = 1 Then
+    Sound.Play(Program.Directory + "\fur.mp3")
+    Program.Delay(500)
+    GraphicsWindow.DrawImage(Program.Directory + "\fur.png",0,0)
+    dq()
+    Sound.Stop(Program.Directory + "\fur.mp3")
+    If firednow = 1 then
+      Goto fakeending
+    Else
+      again1:
+      ran = Math.GetRandomNumber(10)
+      If ran = 1 then
+        Goto again1
+      EndIf
+    EndIf
+  ElseIf ran = 2 Then
+    Sound.Play(Program.Directory + "\fruit.mp3")
+    Program.Delay(500)
+    GraphicsWindow.DrawImage(Program.Directory + "\fruit.png",0,0)
+    dq()
+    Sound.Stop(Program.Directory + "\fruit.mp3")
+    If firednow = 1 then
+      Goto fakeending
+    Else
+      again2:
+      ran = Math.GetRandomNumber(10)
+      If ran = 2 Then
+        Goto again2
+      EndIf
+    EndIf
+  ElseIf ran = 3 then
+    Sound.Play(Program.Directory + "\friends.mp3")
+    Program.Delay(1000)
+    GraphicsWindow.DrawImage(Program.Directory + "\friends.png",0,0)
+    dq()
+    Sound.Stop(Program.Directory + "\friends.mp3")
+    If firednow = 1 then
+      Goto fakeending
+    Else
+      again3:
+      ran = Math.GetRandomNumber(10)
+      If ran = 3 Then
+        Goto again3
+      EndIf
+    EndIf
+  Elseif ran = 4 then
+    Sound.Play(Program.Directory + "\fire.mp3")
+    i = 0
+    Timer.Interval = 10
+    Timer.Tick = next1
+    firednow = 1
+    Program.Delay(300)
+    fakefire()
+    Goto fired
+  ElseIf ran = 5 Then
+    Sound.Play(Program.Directory + "\fly.mp3")
+    Program.Delay(800)
+    GraphicsWindow.DrawImage(Program.Directory + "\fly.png",0,0)
+    dq()
+    Sound.Stop(Program.Directory + "\fly.mp3")
+    If firednow = 1 then
+      Goto fakeending
+    Else
+      again5:
+      ran = Math.GetRandomNumber(10)
+      If ran = 5 Then
+        Goto again5
+      EndIf
+    EndIf
+  ElseIf ran = 6 Then
+    Sound.Play(Program.Directory + "\fever.mp3")
+    Program.Delay(500)
+    GraphicsWindow.DrawImage(Program.Directory + "\fever.png",0,0)
+    dq()
+    Sound.Stop(Program.Directory + "\fever.mp3")
+    If firednow = 1 then
+      Goto fakeending
+    Else
+      again6:
+      ran = Math.GetRandomNumber(10)
+      If ran = 6 Then
+        Goto again6
+      EndIf
+    EndIf
+  ElseIf ran = 9 Then
+    Sound.Play(Program.Directory + "\fury.mp3")
+    Program.Delay(700)
+    GraphicsWindow.DrawImage(Program.Directory + "\fury.png",0,0)
+    dq()
+    Sound.Stop(Program.Directory + "\fury.mp3")
+    If firednow = 1 Then
+      Goto fakeending
+    Else
+      again9:
+      ran = Math.GetRandomNumber(10)
+      If ran = 9 Then
+        Goto again9
+      EndIf
+    EndIf
+  Else
+    ran = Math.GetRandomNumber(10)
+  EndIf
+EndWhile
+
+early1:
+GraphicsWindow.DrawImage(Program.Directory + "\2.png",0,0)
+GraphicsWindow.DrawText(800,500,"Quick trigger")
+Sound.PlayAndWait(Program.Directory + "\early.mp3")
+Sound.Stop(Program.Directory + "\fire.mp3")
+Sound.Stop(Program.Directory + "\shot.mp3")
+Sound.Stop(Program.Directory + "\gun.mp3")
+GraphicsWindow.Clear()
+GraphicsWindow.DrawImage(Program.Directory + "\look.png",0,0)
+Program.Delay(100)
+Sound.PlayAndWait(Program.Directory + "\lower2.mp3")
+one1 = 0
+two1 = 0
+Goto low
+
+early2:
+GraphicsWindow.DrawImage(Program.Directory + "\1.png",0,0)
+GraphicsWindow.DrawText(100,500,"Quick trigger")
+Sound.PlayAndWait(Program.Directory + "\early.mp3")
+Sound.Stop(Program.Directory + "\fire.mp3")
+Sound.Stop(Program.Directory + "\shot.mp3")
+Sound.Stop(Program.Directory + "\gun.mp3")
+GraphicsWindow.Clear()
+GraphicsWindow.DrawImage(Program.Directory + "\look.png",0,0)
+Program.Delay(100)
+Sound.PlayAndWait(Program.Directory + "\lower2.mp3")
+one1 = 0
+two1 = 0
+Goto low
+
+Sub next1
+  i = i + .010
+EndSub
+
+fired:
+While 1 = 1
+  If one1 = 1 Then
+    Mouse.MouseX = 75
+    Mouse.MouseY = 221
+    Sound.Play(Program.Directory + "\shot.mp3")
+    onetime1 = (i + " seconds")
+    onescore1 = i
+    one1 = 0
+    Goto second1
+  EndIf
+  If two1 = 1 Then
+    Mouse.MouseX = 60
+    Mouse.MouseY = 244
+    Sound.Play(Program.Directory + "\gun.mp3")
+    twotime1 = (i + " seconds")
+    twoscore1 = i
+    two1 = 0
+    Goto first1
+  EndIf
+EndWhile
+
+Sub dq
+number = 1
+While (number < 15000)
+  number = number + 1
+  GraphicsWindow.DrawText(50000,50000,number)
+  GraphicsWindow.KeyDown = shoot
+  If one1 = 1 Then
+    Mouse.MouseX = 75
+    Mouse.MouseY = 221
+    firednow = 1
+    Sound.Play(Program.Directory + "\gun.mp3")
+    one1 = 0
+    Goto dq1
+  ElseIf two1 = 1 Then
+    Mouse.MouseX = 60
+    Mouse.MouseY = 244
+    firednow = 1
+    Sound.Play(Program.Directory + "\shot.mp3")
+    two1 = 0
+    Goto dq2
+  EndIf
+EndWhile
+Goto ending
+
+dq1:
+Sound.PlayAndWait(Program.Directory + "\early.mp3")
+Mouse.MouseX = 30
+Mouse.MouseY = 136
+Program.Delay(800)
+Mouse.MouseX = 1000
+Mouse.MouseY = 1000
+Sound.Play(Program.Directory + "\DQ.mp3")
+For d = 1 To 153
+  GraphicsWindow.DrawImage(Program.Directory + "\dq1\" + d + ".png",0,0)
+EndFor
+GraphicsWindow.DrawImage(Program.Directory + "\dq1.png",0,0)
+Goto ending
+
+dq2:
+Sound.PlayAndWait(Program.Directory + "\early.mp3")
+Mouse.MouseX = 4
+Mouse.MouseY = 653
+Program.Delay(800)
+Mouse.MouseX = 1000
+Mouse.MouseY = 1000
+Sound.Play(Program.Directory + "\DQ.mp3")
+For q = 866 To 1019
+  GraphicsWindow.DrawImage(Program.Directory + "\dq2\" + q + ".png",0,0)
+EndFor
+GraphicsWindow.DrawImage(Program.Directory + "\dq2.png",0,0)
+
+ending:
+EndSub
+
+first1:
+GraphicsWindow.KeyDown = shoot
+While 1 = 1
+  If one1 = 1 Then
+    Mouse.MouseX = 75
+    Mouse.MouseY = 221
+    Sound.Play(Program.Directory + "\shot.mp3")
+    onetime1 = (i + " seconds")
+    onescore1 = i
+    one1 = 0
+    Goto fakefinal
+  EndIf
+EndWhile
+second1:
+GraphicsWindow.KeyDown = shoot
+While 1 = 1
+  If two1 = 1 Then
+    Mouse.MouseX = 60
+    Mouse.MouseY = 244
+    Sound.Play(Program.Directory + "\gun.mp3")
+    twotime1 = (i + " seconds")
+    twoscore1 = i
+    two1 = 0
+    Goto fakefinal
+  EndIf
+EndWhile
+
+fakefinal:
+If onescore1 = twoscore1 then
+  GraphicsWindow.BrushColor = "White"
+  GraphicsWindow.FontSize = 150
+  draw1 = Shapes.AddText("DRAW")
+  Shapes.Move(draw1,430,-200)
+  Shapes.HideShape(draw1)
+  GraphicsWindow.DrawImage(Program.Directory + "\drawfake.png",0,0)
+  Program.Delay(2000)
+  Shapes.ShowShape(draw1)
+  Shapes.Animate(draw1,430,200,2000)
+  Sound.Play(Program.Directory + "\goodears.mp3")
+  Program.Delay(6000)
+  Goto fakeending
+EndIf
+timeone1 = Shapes.AddText(onetime1)
+Shapes.HideShape(onetime1)
+timetwo1 = Shapes.AddText(twotime1)
+Shapes.HideShape(twotime1)
+Shapes.Move(timeone1,850,1000)
+Shapes.Move(timetwo1,70,1000)
+Program.Delay(2000)
+Shapes.ShowShape(timeone1)
+Shapes.ShowShape(timetwo1)
+Shapes.Animate(timeone1,850,400,2000)
+Shapes.Animate(timetwo1,70,400,2000)
+Program.Delay(3000)
+Sound.Play(Program.Directory + "\goodears.mp3")
+If twoscore1 > onescore1 then
+  Mouse.MouseX = 4
+  Mouse.MouseY = 653
+  Program.Delay(800)
+  Mouse.MouseX = 1000
+  Mouse.MouseY = 1000
+  winlose1()
+  Sound.Play(Program.Directory + "\goodears.mp3")
+  timeone1 = Shapes.AddText(onetime1)
+  Shapes.HideShape(onetime1)
+  Shapes.Move(timeone1,750,1000)
+  timetwo1 = Shapes.AddText(twotime)
+  Shapes.Move(timetwo1,150,1000)
+  Shapes.HideShape(twotime1)
+  Program.Delay(500)
+  Shapes.ShowShape(timeone1)
+  Shapes.ShowShape(timetwo1)
+  Shapes.Animate(timeone1,750,450,1000)
+  Shapes.Animate(timetwo1,150,450,1000)
+  Goto fakeending
+Else
+  winlose3()
+  Mouse.MouseX = 30
+  Mouse.MouseY = 136
+  GraphicsWindow.DrawImage(Program.Directory + "\2.png",0,0)
+  Shapes.Animate(timeone1,850,550,2000)
+  Program.Delay(800)
+  Mouse.MouseX = 1000
+  Mouse.MouseY = 1000
+  Program.Delay(2200)
+  Shapes.ShowShape(win1)
+  Shapes.ShowShape(lose1)
+  Shapes.Animate(win1,150,200,2000)
+  Shapes.Animate(lose1,950,400,2000)
+  Program.Delay(6000)
+  Goto fakeending
+endif
+
+fakeending:
+Program.Delay(1000)
+GraphicsWindow.FontSize = 30
+Sound.Stop(Program.Directory + "\goodears.mp3")
+Sound.Stop(Program.Directory + "\ready.mp3")
+Sound.Stop(Program.Directory + "\lower.mp3")
+Sound.Stop(Program.Directory + "\DQ.mp3")
+home = Shapes.AddImage(Program.Directory + "\home.png")
+gohome = Shapes.AddText("Press the Home Button")
+Shapes.HideShape(home)
+Shapes.Move(home,400,600)
+Shapes.SetOpacity(home,0)
+Shapes.ShowShape(home)
+Shapes.HideShape(gohome)
+Shapes.Move(gohome,500,630)
+Shapes.SetOpacity(gohome,0)
+Shapes.ShowShape(gohome)
+Program.Delay(100)
+Shapes.SetOpacity(home,10)
+Shapes.SetOpacity(gohome,10)
+Program.Delay(100)
+Shapes.SetOpacity(home,30)
+Shapes.SetOpacity(gohome,30)
+Program.Delay(100)
+Shapes.SetOpacity(home,50)
+Shapes.SetOpacity(gohome,50)
+Program.Delay(100)
+Shapes.SetOpacity(home,60)
+Shapes.SetOpacity(gohome,60)
+Program.Delay(100)
+Shapes.SetOpacity(home,80)
+Shapes.SetOpacity(gohome,80)
+Program.Delay(100)
+Shapes.SetOpacity(home,100)
+Shapes.SetOpacity(gohome,100)
+GraphicsWindow.KeyDown = restart2
+GraphicsWindow.MouseDown = restart3
+Sub restart2
+  If GraphicsWindow.LastKey="H" Then
+    goback = 1
+  EndIf
+EndSub
+Sub restart3
+  goback = 1
+EndSub
+While 1 = 1
+  If goback = 1 Then
+    goback = 0
+    GraphicsWindow.Clear()
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\final.mp3")
+    Sound.Stop(Program.Directory + "\fire.mp3")
+    Sound.Stop(Program.Directory + "\shot.mp3")
+    Sound.Stop(Program.Directory + "\gun.mp3")
+    played = 1
+    Goto fakemenu
+  EndIf
+EndWhile
+
+Sub winlose1
+  For v = 0 To 113
+    GraphicsWindow.DrawImage(Program.Directory + "\1\" + v + ".png",0,0)
+  EndFor
+EndSub
+
+Sub winlose3
+  win1 = Shapes.AddText("WIN")
+  Shapes.HideShape(win1)
+  lose1 = Shapes.AddText("LOSE")
+  Shapes.HideShape(lose1)
+  Shapes.Move(win1,150,-100)
+  Shapes.Move(lose1,950,-100)
+EndSub
+
+Sub shoot
+  If GraphicsWindow.LastKey="V" Then
+    one1 = 1
+  ElseIf GraphicsWindow.LastKey="B" Then
+    two1 = 1
+  EndIf
+EndSub
+
+Sub fakefire
+  For f = 1 To 13
+    GraphicsWindow.DrawImage(Program.Directory + "\fakefire\" + f + ".png",0,0)
+  EndFor
+  GraphicsWindow.DrawImage(Program.Directory + "\fakefire.png",0,0)
+EndSub
+
+Sub flr
+  For m = 133 To 234
+    GraphicsWindow.DrawImage(Program.Directory + "\flr\" + m + ".png",0,0)
+  EndFor
+  Program.Delay(1000)
+EndSub
