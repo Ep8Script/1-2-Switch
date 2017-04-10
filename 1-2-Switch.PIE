@@ -1,0 +1,45 @@
+﻿key.A = wiimote.Two or wiimote2.Two  or wiimote.A or wiimote2.A
+key.B = wiimote.B and wiimote.Shake
+key.V = wiimote2.B and wiimote2.Shake
+key.H = wiimote.Home or wiimote2.Home
+Key.Left = wiimote.Up or wiimote2.Up or wiimote.Left or wiimote2.Left
+Key.Right = wiimote.Down or wiimote2.Down or wiimote.Right or wiimote2.Right
+key.C = wiimote.B or wiimote.One or wiimote2.B or wiimote2.One
+Key.Space = wiimote2.Shake
+key.X = wiimote.B
+key.Z = wiimote2.B
+Key.R = Released(key.B or key.V)
+key.O = wiimote.Plus or wiimote2.Plus
+
+if mouse.CursorPosX = 3
+wiimote.Rumble = 1
+wait 80ms
+wiimote.Rumble = 0
+EndIf
+
+if mouse.CursorPosX = 20
+wiimote2.Rumble = 1
+wait 80ms
+wiimote2.Rumble = 0
+EndIf
+
+if mouse.CursorPosX = 30
+wiimote.Rumble = 1
+wait 80ms
+wiimote.Rumble = 0
+EndIf
+
+if mouse.CursorPosX = 40
+wiimote.Rumble = 1
+wait 120ms
+wiimote.Rumble = 0
+mouse.CursorPosX = 1000
+EndIf
+
+if mouse.CursorPosX = 50
+wiimote2.Rumble = 1
+wait 120ms
+wiimote2.Rumble = 0
+mouse.CursorPosX = 1000
+EndIf
+
