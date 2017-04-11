@@ -4,7 +4,7 @@ GraphicsWindow.Width = Desktop.Width
 GraphicsWindow.Top = 0
 GraphicsWindow.Left = 0
 GraphicsWindow.CanResize = "True"
-GraphicsWindow.Title = "1-2-Switch"
+GraphicsWindow.Title = "1-2-Switch v1.3"
 Mouse.HideCursor()
 main:
 GraphicsWindow.Clear()
@@ -221,13 +221,13 @@ While (num < 30000)
   EndIf
 EndWhile
 Sound.Play(Program.Directory + "\fire.mp3")
-Program.Delay(100)
-fireit()
 If played = 1 then
 i = 0
 endif
 Timer.Interval = 10
 Timer.Tick = next
+Program.Delay(100)
+fireit()
 
 While 1 = 1
   If one = 1 Then
@@ -291,7 +291,7 @@ If onescore = twoscore then
   Sound.Play(Program.Directory + "\final.mp3")
   Program.Delay(2000)
   Goto quickending
-endif
+EndIf
 Sound.Play(Program.Directory + "\final.mp3")
 If twoscore > onescore then
   Mouse.MouseX = 4
@@ -956,7 +956,7 @@ While firednow = 0
     EndIf
   Elseif ran = 4 then
     Sound.Play(Program.Directory + "\fire.mp3")
-    i = 0
+    l = 0
     Timer.Interval = 10
     Timer.Tick = next1
     firednow = 1
@@ -1044,7 +1044,7 @@ two1 = 0
 Goto low
 
 Sub next1
-  i = i + .010
+  l = l + .010
 EndSub
 
 fired:
@@ -1053,8 +1053,8 @@ While 1 = 1
     Mouse.MouseX = 75
     Mouse.MouseY = 221
     Sound.Play(Program.Directory + "\shot.mp3")
-    onetime1 = (i + " seconds")
-    onescore1 = i
+    onetime1 = (l + " seconds")
+    onescore1 = l
     one1 = 0
     Goto second1
   EndIf
@@ -1062,8 +1062,8 @@ While 1 = 1
     Mouse.MouseX = 60
     Mouse.MouseY = 244
     Sound.Play(Program.Directory + "\gun.mp3")
-    twotime1 = (i + " seconds")
-    twoscore1 = i
+    twotime1 = (l + " seconds")
+    twoscore1 = l
     two1 = 0
     Goto first1
   EndIf
@@ -1130,8 +1130,8 @@ While 1 = 1
     Mouse.MouseX = 75
     Mouse.MouseY = 221
     Sound.Play(Program.Directory + "\shot.mp3")
-    onetime1 = (i + " seconds")
-    onescore1 = i
+    onetime1 = (l + " seconds")
+    onescore1 = l
     one1 = 0
     Goto fakefinal
   EndIf
@@ -1143,14 +1143,15 @@ While 1 = 1
     Mouse.MouseX = 60
     Mouse.MouseY = 244
     Sound.Play(Program.Directory + "\gun.mp3")
-    twotime1 = (i + " seconds")
-    twoscore1 = i
+    twotime1 = (l + " seconds")
+    twoscore1 = l
     two1 = 0
     Goto fakefinal
   EndIf
 EndWhile
 
 fakefinal:
+Program.Delay(3000)
 If onescore1 = twoscore1 then
   GraphicsWindow.BrushColor = "White"
   GraphicsWindow.FontSize = 150
@@ -1165,18 +1166,6 @@ If onescore1 = twoscore1 then
   Program.Delay(6000)
   Goto fakeending
 EndIf
-timeone1 = Shapes.AddText(onetime1)
-Shapes.HideShape(onetime1)
-timetwo1 = Shapes.AddText(twotime1)
-Shapes.HideShape(twotime1)
-Shapes.Move(timeone1,850,1000)
-Shapes.Move(timetwo1,70,1000)
-Program.Delay(2000)
-Shapes.ShowShape(timeone1)
-Shapes.ShowShape(timetwo1)
-Shapes.Animate(timeone1,850,400,2000)
-Shapes.Animate(timetwo1,70,400,2000)
-Program.Delay(3000)
 Sound.Play(Program.Directory + "\goodears.mp3")
 If twoscore1 > onescore1 then
   Mouse.MouseX = 4
@@ -1185,11 +1174,11 @@ If twoscore1 > onescore1 then
   Mouse.MouseX = 1000
   Mouse.MouseY = 1000
   winlose1()
-  Sound.Play(Program.Directory + "\goodears.mp3")
+  Sound.Play(Program.Directory + "\ending.mp3")
   timeone1 = Shapes.AddText(onetime1)
   Shapes.HideShape(onetime1)
   Shapes.Move(timeone1,750,1000)
-  timetwo1 = Shapes.AddText(twotime)
+  timetwo1 = Shapes.AddText(twotime1)
   Shapes.Move(timetwo1,150,1000)
   Shapes.HideShape(twotime1)
   Program.Delay(500)
@@ -1199,25 +1188,29 @@ If twoscore1 > onescore1 then
   Shapes.Animate(timetwo1,150,450,1000)
   Goto fakeending
 Else
-  winlose3()
   Mouse.MouseX = 30
   Mouse.MouseY = 136
-  GraphicsWindow.DrawImage(Program.Directory + "\2.png",0,0)
-  Shapes.Animate(timeone1,850,550,2000)
   Program.Delay(800)
   Mouse.MouseX = 1000
   Mouse.MouseY = 1000
-  Program.Delay(2200)
-  Shapes.ShowShape(win1)
-  Shapes.ShowShape(lose1)
-  Shapes.Animate(win1,150,200,2000)
-  Shapes.Animate(lose1,950,400,2000)
-  Program.Delay(6000)
-  Goto fakeending
+  winlose3()
+  Sound.Play(Program.Directory + "\ending.mp3")
+  timeone1 = Shapes.AddText(onetime1)
+  Shapes.Move(timeone1,750,1000)
+  Shapes.HideShape(onetime1)
+  timetwo1 = Shapes.AddText(twotime1)
+  Shapes.HideShape(twotime1)
+  Shapes.Move(timetwo1,150,1000)
+  Program.Delay(500)
+  Shapes.ShowShape(timeone1)
+  Shapes.ShowShape(timetwo1)
+  Shapes.Animate(timeone1,750,450,1000)
+  Shapes.Animate(timetwo1,150,450,1000)
+  Goto fakeending 
 endif
 
 fakeending:
-Program.Delay(1000)
+Program.Delay(500)
 GraphicsWindow.FontSize = 30
 Sound.Stop(Program.Directory + "\goodears.mp3")
 Sound.Stop(Program.Directory + "\ready.mp3")
@@ -1264,12 +1257,16 @@ EndSub
 While 1 = 1
   If goback = 1 Then
     goback = 0
-    GraphicsWindow.Clear()
+    Shapes.Remove(home)
+    Shapes.Remove(gohome)
+    Shapes.Remove(timeone1)
+    Shapes.Remove(timetwo1)
     Sound.PlayClick()
     Sound.Stop(Program.Directory + "\final.mp3")
     Sound.Stop(Program.Directory + "\fire.mp3")
     Sound.Stop(Program.Directory + "\shot.mp3")
     Sound.Stop(Program.Directory + "\gun.mp3")
+    Sound.Stop(Program.Directory + "\ending.mp3")
     played = 1
     Goto fakemenu
   EndIf
@@ -1282,12 +1279,9 @@ Sub winlose1
 EndSub
 
 Sub winlose3
-  win1 = Shapes.AddText("WIN")
-  Shapes.HideShape(win1)
-  lose1 = Shapes.AddText("LOSE")
-  Shapes.HideShape(lose1)
-  Shapes.Move(win1,150,-100)
-  Shapes.Move(lose1,950,-100)
+  For s = 0 To 112
+    GraphicsWindow.DrawImage(Program.Directory + "\2\" + s + ".png",0,0)
+  EndFor
 EndSub
 
 Sub shoot
