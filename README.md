@@ -1,4 +1,5 @@
- # 1-2-Switch
+
+# 1-2-Switch
 *1-2-Switch* recreation project using Microsoft Small Basic.
 
 # Requirements
@@ -14,7 +15,7 @@
 * Quick Draw
   * Completed (minor bugs)
 * Fake Draw
-  * Almost playable/WIP
+  * Almost completed (minor bugs, small problems with randomiser)
 
 # Changelog
 * v1.0
@@ -52,3 +53,4 @@
     * Shorter time between random words
     * Word read aloud before image shows up
   * Added "Quick Draw" voice when selected
+  * Fixed bug in Quick Draw where the timer would begin too late
