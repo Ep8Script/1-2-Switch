@@ -1,4 +1,4 @@
-
+ 
 # 1-2-Switch
 *1-2-Switch* recreation project using Microsoft Small Basic.
 
@@ -57,4 +57,4 @@
   * Added "Quick Draw" voice when selected
   * Fixed bug in Quick Draw where the timer would begin too late
 * v1.4
- * Added Telephone
+  * Added Telephone
