@@ -16,6 +16,8 @@
   * Completed (minor bugs)
 * Fake Draw
   * Almost completed (minor bugs, small problems with randomiser)
+* Telephone
+  * Unplayable/WIP
 
 # Changelog
 * v1.0
@@ -54,3 +56,5 @@
     * Word read aloud before image shows up
   * Added "Quick Draw" voice when selected
   * Fixed bug in Quick Draw where the timer would begin too late
+* v1.4
+ * Added Telephone
