@@ -11,11 +11,11 @@
 
 # Minigames
 * Soda Shake
-  * Unplayable/WIP
+  * Playable (see v1.4 changelog)
 * Quick Draw
   * Completed (minor bugs)
 * Fake Draw
-  * Almost completed (minor bugs, small problems with randomiser)
+  * Playable (minor bugs, small problems with randomiser)
 * Telephone
   * WIP
 
@@ -56,3 +56,8 @@
     * Word read aloud before image shows up
   * Added "Quick Draw" voice when selected
   * Fixed bug in Quick Draw where the timer would begin too late
+  
+* v1.4
+  * Soda Shake is now fully playable
+    * Vibration and animations still to be added in v1.4.1
+  * Files for Telephone minigame added
