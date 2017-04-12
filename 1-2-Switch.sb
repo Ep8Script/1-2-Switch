@@ -4,7 +4,7 @@ GraphicsWindow.Width = Desktop.Width
 GraphicsWindow.Top = 0
 GraphicsWindow.Left = 0
 GraphicsWindow.CanResize = "True"
-GraphicsWindow.Title = "1-2-Switch v1.3"
+GraphicsWindow.Title = "1-2-Switch v1.4"
 Mouse.HideCursor()
 main:
 GraphicsWindow.Clear()
@@ -613,29 +613,117 @@ Program.Delay(10)
 Shapes.ShowShape(start1)
 Program.Delay(500)
 fadestart()
-rand = Math.GetRandomNumber(80)
-While rand < 40
-  rand = Math.GetRandomNumber(80)
+rand = Math.GetRandomNumber(180)
+While rand < 60
+  rand = Math.GetRandomNumber(180)
 EndWhile
 GraphicsWindow.DrawImage(Program.Directory + "\watch.png",0,0)
-Timer.Interval = rand * 1000
-Timer.Tick = OnTimerTick
+currentnum = 0
+shk = 0
 shakeagain:
-GraphicsWindow.KeyDown = burst
-repeat = 1
+GraphicsWindow.KeyDown = shakeit
+If shakeagain = 1 then
+  shakeagain = 0
+  Goto shakeagain
+ElseIf burstit = 1 Then
+  burstit = 0
+  Goto bursted
+Else
+  Goto shakeagain
+EndIf
+
+bursted:
+Sound.Stop(Program.Directory + "\intro.mp3")
+Sound.Play(Program.Directory + "\shakeending.mp3")
+burstedit()
+GraphicsWindow.FontSize = 30
+GraphicsWindow.BrushColor = "Black"
+home = Shapes.AddImage(Program.Directory + "\home.png")
+gohome = Shapes.AddText("Press the Home Button")
+Shapes.HideShape(home)
+Shapes.Move(home,400,600)
+Shapes.SetOpacity(home,0)
+Shapes.ShowShape(home)
+Shapes.HideShape(gohome)
+Shapes.Move(gohome,500,630)
+Shapes.SetOpacity(gohome,0)
+Shapes.ShowShape(gohome)
+Program.Delay(100)
+Shapes.SetOpacity(home,10)
+Shapes.SetOpacity(gohome,10)
+Program.Delay(100)
+Shapes.SetOpacity(home,30)
+Shapes.SetOpacity(gohome,30)
+Program.Delay(100)
+Shapes.SetOpacity(home,50)
+Shapes.SetOpacity(gohome,50)
+Program.Delay(100)
+Shapes.SetOpacity(home,60)
+Shapes.SetOpacity(gohome,60)
+Program.Delay(100)
+Shapes.SetOpacity(home,80)
+Shapes.SetOpacity(gohome,80)
+Program.Delay(100)
+Shapes.SetOpacity(home,100)
+Shapes.SetOpacity(gohome,100)
+GraphicsWindow.KeyDown = restart4
+GraphicsWindow.MouseDown = restart5
+
+Sub restart4
+  If GraphicsWindow.LastKey="H" Then
+    goback = 1
+  EndIf
+EndSub
+
+Sub restart5
+  goback = 1
+EndSub
 
 While 1 = 1
-  If repeat = 1 then
-    repeat = 0
-    Goto shakeagain
+  If goback = 1 Then
+    goback = 0
+    Shapes.Remove(home)
+    Shapes.Remove(gohome)
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\shakeending.mp3")
+    played = 1
+    Goto shaketitle
   EndIf
 EndWhile
 
-Sub burst
+Sub shakeit
   If GraphicsWindow.LastKey="Space" Then
-    Sound.Play(Program.Directory + "\shaking.mp3")
+    If shk = 0 Then
+      shk = 1
+      Sound.Play(Program.Directory + "\shaking3.mp3")
+      Sound.Stop(Program.Directory + "\shaking2.mp3")
+    ElseIf shk = 1 Then
+      shk = 2
+      Sound.Play(Program.Directory + "\shaking2.mp3")
+      Sound.Stop(Program.Directory + "\shaking3.mp3")
+    ElseIf shk = 2 Then
+      shk = 3
+      Sound.Play(Program.Directory + "\shaking3.mp3")
+      Sound.Stop(Program.Directory + "\shaking4.mp3")
+    ElseIf shk = 3 Then
+      shk = 0
+      Sound.Play(Program.Directory + "\shaking4.mp3")
+      Sound.Stop(Program.Directory + "\shaking.mp3")
+    EndIf
+    currentnum = currentnum + 1
+    If rand = currentnum Then
+      burstit = 1
+    Else
+      shakeagain = 1
+    EndIf
   EndIf
 endSub
+
+Sub burstedit
+  For br = 0 To 91
+    GraphicsWindow.DrawImage(Program.Directory + "\cheers\" + br + ".png",0,0)
+  EndFor
+EndSub
 
 Sub OnTimerTick
   thisnumber = 0
