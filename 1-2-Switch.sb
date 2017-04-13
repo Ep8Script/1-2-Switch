@@ -4,7 +4,7 @@ GraphicsWindow.Width = Desktop.Width
 GraphicsWindow.Top = 0
 GraphicsWindow.Left = 0
 GraphicsWindow.CanResize = "True"
-GraphicsWindow.Title = "1-2-Switch v1.4"
+GraphicsWindow.Title = "1-2-Switch v1.4.1"
 Mouse.HideCursor()
 main:
 GraphicsWindow.Clear()
@@ -111,9 +111,11 @@ Shapes.Move(okay1,180,430)
 okay2 = Shapes.AddText("OK")
 Shapes.HideShape(okay2)
 Shapes.Move(okay2,880,430)
+letit = 1
 GraphicsWindow.KeyDown = quick
+
 Sub quick
-  If GraphicsWindow.LastKey="X" Then
+  If GraphicsWindow.LastKey="X" and letit = 1 Then
     Shapes.ShowShape(okay1)
     Sound.Play(Program.Directory + "\click.mp3")
     Mouse.MouseX = 45
@@ -124,7 +126,7 @@ Sub quick
     Sound.Stop(Program.Directory + "\click.mp3")
     GraphicsWindow.KeyDown = ok
     GraphicsWindow.KeyUp = nothing
-  ElseIf GraphicsWindow.LastKey="Z" then
+  ElseIf GraphicsWindow.LastKey="Z" and letit = 1 then
     Shapes.ShowShape(okay2)
     Sound.Play(Program.Directory + "\click.mp3")
     Mouse.MouseX = 30
@@ -141,7 +143,7 @@ Sub quick
 endsub
 
 Sub ok
-  If GraphicsWindow.LastKey="Z" Then
+  If GraphicsWindow.LastKey="Z" And letit = 1 Then
     Sound.Play(Program.Directory + "\click.mp3")
     Mouse.MouseX = 30
     Mouse.MouseY = 324
@@ -153,11 +155,12 @@ Sub ok
     GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
     Program.Delay(1000)
     start = 1
+    letit = 0
   EndIf
 EndSub
 
 Sub okk
-  If GraphicsWindow.LastKey="X" then
+  If GraphicsWindow.LastKey="X" And letit = 1 then
     Sound.Play(Program.Directory + "\click.mp3")
     Mouse.MouseX = 45
     Mouse.MouseY = 212
@@ -169,6 +172,7 @@ Sub okk
     GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
     Program.Delay(1000)
     start = 1
+    letit = 0
   EndIf
 EndSub
 
@@ -203,6 +207,7 @@ num = 1
 While (num < 30000)
   num = num + 1
   GraphicsWindow.DrawText(50000,50000,num)
+  one = 0
   If one = 1 Then
     Mouse.MouseX = 75
     Mouse.MouseY = 221
@@ -211,6 +216,7 @@ While (num < 30000)
     Sound.Stop(Program.Directory + "\ready.mp3")
     Goto earlyone
   EndIf
+  two = 0
   If two = 1 Then
     Mouse.MouseX = 60
     Mouse.MouseY = 244
@@ -281,7 +287,7 @@ Sound.Stop(Program.Directory + "\ready.mp3")
 If onescore = twoscore then
   GraphicsWindow.BrushColor = "White"
   GraphicsWindow.FontSize = 150
-  draw = Shapes.AddText("DRAW")
+  draw = Shapes.AddText("Draw")
   Shapes.Move(draw,430,-200)
   Shapes.HideShape(draw)
   GraphicsWindow.DrawImage(Program.Directory + "\drawquick.png",0,0)
@@ -514,9 +520,11 @@ GraphicsWindow.FontSize = 150
 okay3 = Shapes.AddText("OK")
 Shapes.HideShape(okay3)
 Shapes.Move(okay3,800,470)
+letit = 1
 GraphicsWindow.KeyDown = shake
+
 Sub shake
-  If GraphicsWindow.LastKey="Z" Then
+  If GraphicsWindow.LastKey="Z" And letit = 1 Then
     Sound.Play(Program.Directory + "\click.mp3")
     Mouse.MouseX = 30
     Mouse.MouseY = 324
@@ -528,6 +536,7 @@ Sub shake
     GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
     Program.Delay(1000)
     start = 1
+    letit = 0
   ElseIf GraphicsWindow.LastKey="O" Then
     back = 1
   EndIf
@@ -537,7 +546,7 @@ While 1 = 1
   If start = 1 then
     start = 0
     Sound.Stop(Program.Directory + "\soda.mp3")
-    Shapes.HideShape(okay3)
+    Shapes.Remove(okay3)
     Goto sodasplash
   ElseIf back = 1 Then
     back = 0
@@ -547,6 +556,8 @@ While 1 = 1
   EndIf
 endwhile
 sodasplash:
+Sound.Play(Program.Directory + "\intro.mp3")
+sodafade()
 GraphicsWindow.BrushColor = "White"
 GraphicsWindow.FontSize = 60
 remote = Shapes.AddImage(Program.Directory + "/wiimote.png")
@@ -554,9 +565,7 @@ Shapes.HideShape(remote)
 shake = Shapes.AddText("Shake that soda!")
 Shapes.HideShape(shake)
 GraphicsWindow.DrawImage(Program.Directory + "\sodashake.png",0,0)
-Program.Delay(200)
-Sound.Play(Program.Directory + "\intro.mp3")
-Program.Delay(3500)
+Program.Delay(2000)
 screenevents()
 ready = Shapes.AddText("Ready!")
 shapes.HideShape(ready)
@@ -617,25 +626,45 @@ rand = Math.GetRandomNumber(180)
 While rand < 60
   rand = Math.GetRandomNumber(180)
 EndWhile
-GraphicsWindow.DrawImage(Program.Directory + "\watch.png",0,0)
+look()
 currentnum = 0
 shk = 0
+j = 0
 shakeagain:
-GraphicsWindow.KeyDown = shakeit
+If j = 0 Then
+  GraphicsWindow.KeyDown = shakeit
+EndIf
 If shakeagain = 1 then
   shakeagain = 0
   Goto shakeagain
 ElseIf burstit = 1 Then
   burstit = 0
+  j = 1
   Goto bursted
 Else
   Goto shakeagain
 EndIf
 
+Sub look
+  For z = 0 To 25
+    GraphicsWindow.DrawImage(Program.Directory + "\look\" + z + ".png",0,0)
+  EndFor
+EndSub
+
+Sub sodafade
+  For s = 0 To 40
+    GraphicsWindow.DrawImage(Program.Directory + "\soda\" + s + ".png",0,0)
+  EndFor
+EndSub
+
 bursted:
 Sound.Stop(Program.Directory + "\intro.mp3")
 Sound.Play(Program.Directory + "\shakeending.mp3")
+Mouse.MouseX = 30
+Mouse.MouseY = 324
 burstedit()
+Mouse.MouseX = 1000
+Mouse.MouseY = 1000
 GraphicsWindow.FontSize = 30
 GraphicsWindow.BrushColor = "Black"
 home = Shapes.AddImage(Program.Directory + "\home.png")
@@ -682,11 +711,9 @@ EndSub
 While 1 = 1
   If goback = 1 Then
     goback = 0
-    Shapes.Remove(home)
-    Shapes.Remove(gohome)
+    GraphicsWindow.Clear()
     Sound.PlayClick()
     Sound.Stop(Program.Directory + "\shakeending.mp3")
-    played = 1
     Goto shaketitle
   EndIf
 EndWhile
@@ -712,12 +739,12 @@ Sub shakeit
     EndIf
     currentnum = currentnum + 1
     If rand = currentnum Then
-      burstit = 1
+      burstit = 1    
     Else
       shakeagain = 1
     EndIf
   EndIf
-endSub
+EndSub
 
 Sub burstedit
   For br = 0 To 91
@@ -833,13 +860,17 @@ Sub fakemenu
     gotofake = 1
   ElseIf GraphicsWindow.LastKey="Left" then
     gotoquickdraw = 1
+  ElseIf GraphicsWindow.LastKey="Right" Then
+    gototele = 1
   ElseIf GraphicsWindow.LastKey="C" then
     back = 1
   EndIf
-endsub
+EndSub
+
 Sub fakemenu1
   gotofake = 1
 Endsub
+
 While 1 = 1
   If gotofake = 1 then
     gotofake = 0
@@ -852,9 +883,9 @@ While 1 = 1
     Sound.Stop(Program.Directory + "\gunmen.mp3")
     GraphicsWindow.Clear()
     move2 = Shapes.AddImage(Program.Directory + "\fakedraw.png")
-    Shapes.HideShape(move)
-    move = Shapes.AddImage(Program.Directory + "\background.jpg")
     Shapes.HideShape(move2)
+    move = Shapes.AddImage(Program.Directory + "\background.jpg")
+    Shapes.HideShape(move)
     Shapes.Move(move,-1400,0)
     Shapes.ShowShape(move)
     Shapes.ShowShape(move2)
@@ -863,7 +894,24 @@ While 1 = 1
     Shapes.Animate(move2,1400,0,1000)
     Program.Delay(1200)
     Goto quickmenu
-  elseif back = 1 then
+  ElseIf gototele = 1 Then
+    gototele = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\gunmen.mp3")
+    GraphicsWindow.Clear()
+    go2 = Shapes.AddImage(Program.Directory + "\fakedraw.png")
+    Shapes.HideShape(go2)
+    go = Shapes.AddImage(Program.Directory + "\telephone.png")
+    Shapes.HideShape(go)
+    Shapes.Move(go,1400,0)
+    Shapes.ShowShape(go)
+    Shapes.ShowShape(go2)
+    Shapes.Move(go2,0,0)
+    Shapes.Animate(go,0,0,1000)
+    Shapes.Animate(go2,-1400,0,1000)
+    Program.Delay(1200)
+    Goto telephonemenu
+  ElseIf back = 1 Then
     back = 0
     Sound.PlayClick()
     Sound.Stop(Program.Directory + "\gunmen.mp3")
@@ -883,9 +931,11 @@ Shapes.Move(okay4,180,430)
 okay5 = Shapes.AddText("OK")
 Shapes.HideShape(okay5) 
 Shapes.Move(okay5,880,430)
+letit = 1
 GraphicsWindow.KeyDown = fake
+
 Sub fake
-  If GraphicsWindow.LastKey="X" Then
+  If GraphicsWindow.LastKey="X" And letit = 1Then
     Shapes.ShowShape(okay4)
     Sound.Play(Program.Directory + "\click.mp3")
     Mouse.MouseX = 45
@@ -896,7 +946,7 @@ Sub fake
     Sound.Stop(Program.Directory + "\click.mp3")
     GraphicsWindow.KeyDown = okay
     GraphicsWindow.KeyUp = donothing
-  ElseIf GraphicsWindow.LastKey="Z" then
+  ElseIf GraphicsWindow.LastKey="Z" And letit = 1 then
     Shapes.ShowShape(okay5)
     Sound.Play(Program.Directory + "\click.mp3")
     Mouse.MouseX = 30
@@ -913,7 +963,7 @@ Sub fake
 endsub
 
 Sub okay
-  If GraphicsWindow.LastKey="Z" Then
+  If GraphicsWindow.LastKey="Z" And letit = 1 Then
     Sound.Play(Program.Directory + "\click.mp3")
     Mouse.MouseX = 30
     Mouse.MouseY = 324
@@ -925,11 +975,12 @@ Sub okay
     GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
     Program.Delay(1000)
     start = 1
+    letit = 0
   EndIf
 EndSub
 
 Sub okayy
-  If GraphicsWindow.LastKey="X" then
+  If GraphicsWindow.LastKey="X" And letit = 1 then
     Sound.Play(Program.Directory + "\click.mp3")
     Mouse.MouseX = 45
     Mouse.MouseY = 212
@@ -941,6 +992,7 @@ Sub okayy
     GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
     Program.Delay(1000)
     start = 1
+    letit = 0
   EndIf
 EndSub
 
@@ -977,6 +1029,7 @@ num = 1
 While (num < 40000)
   num = num + 1
   GraphicsWindow.DrawText(50000,50000,num)
+  one1 = 0
   If one1 = 1 Then
     Mouse.MouseX = 75
     Mouse.MouseY = 221
@@ -985,6 +1038,7 @@ While (num < 40000)
     Sound.Stop(Program.Directory + "\ready.mp3")
     Goto early1
   EndIf
+  two1 = 0
   If two1 = 1 Then
     Mouse.MouseX = 60
     Mouse.MouseY = 244
@@ -1243,7 +1297,7 @@ Program.Delay(3000)
 If onescore1 = twoscore1 then
   GraphicsWindow.BrushColor = "White"
   GraphicsWindow.FontSize = 150
-  draw1 = Shapes.AddText("DRAW")
+  draw1 = Shapes.AddText("Draw")
   Shapes.Move(draw1,430,-200)
   Shapes.HideShape(draw1)
   GraphicsWindow.DrawImage(Program.Directory + "\drawfake.png",0,0)
@@ -1295,7 +1349,7 @@ Else
   Shapes.Animate(timeone1,750,450,1000)
   Shapes.Animate(timetwo1,150,450,1000)
   Goto fakeending 
-endif
+EndIf
 
 fakeending:
 Program.Delay(500)
@@ -1334,6 +1388,7 @@ Shapes.SetOpacity(home,100)
 Shapes.SetOpacity(gohome,100)
 GraphicsWindow.KeyDown = restart2
 GraphicsWindow.MouseDown = restart3
+
 Sub restart2
   If GraphicsWindow.LastKey="H" Then
     goback = 1
@@ -1393,3 +1448,9 @@ Sub flr
   EndFor
   Program.Delay(1000)
 EndSub
+
+telephonemenu:
+Shapes.Remove(go)
+Shapes.Remove(go2)
+GraphicsWindow.DrawImage(Program.Directory + "\telephone.png",0,0)
+Sound.Play(Program.Directory + "\ding.mp3")
