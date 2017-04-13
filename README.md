@@ -1,4 +1,5 @@
- 
+
+
 # 1-2-Switch
 *1-2-Switch* recreation project using Microsoft Small Basic.
 
@@ -59,5 +60,9 @@
   
 * v1.4
   * Soda Shake is now fully playable
-    * Vibration and animations still to be added in v1.4.1
+    * Vibration and animations still to be added
   * Files for Telephone minigame added
+* v1.4.1
+  * Some animations added to Soda Shake <!-- Regarded, unfortunately, as "good enough", otherwise speed would slow down significantly -->
+  * Vibrations when soda bursts
+  * Telephone minigame added to menu
