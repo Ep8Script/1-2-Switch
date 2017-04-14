@@ -4,8 +4,8 @@ GraphicsWindow.Width = Desktop.Width
 GraphicsWindow.Top = 0
 GraphicsWindow.Left = 0
 GraphicsWindow.CanResize = "True"
-GraphicsWindow.Title = "1-2-Switch v1.4.1"
-Mouse.HideCursor()
+GraphicsWindow.Title = "1-2-Switch v1.5"
+Mouse.HideCursor()  
 main:
 GraphicsWindow.Clear()
 GraphicsWindow.DrawImage(Program.Directory + "\main.jpg",25,0)
@@ -27,7 +27,7 @@ While 1 = 1
     Sound.PlayClick()
     Goto shaketitle
   EndIf
-endwhile
+EndWhile
 
 quickmenu:
 Shapes.Remove(img)
@@ -38,6 +38,7 @@ GraphicsWindow.DrawImage(Program.Directory + "\background.jpg",0,0)
 Sound.Play(Program.Directory + "\gunmen.mp3")
 GraphicsWindow.KeyDown = shakemenu
 GraphicsWindow.MouseDown = shakemenu1
+
 Sub shakemenu
   If GraphicsWindow.LastKey="A" Then
     gotoquick = 1
@@ -48,10 +49,12 @@ Sub shakemenu
   ElseIf GraphicsWindow.LastKey="C" then
     back = 1
   EndIf
-endsub
+EndSub
+
 Sub shakemenu1
   gotoquick = 1
-Endsub
+EndSub
+
 While 1 = 1
   If gotoquick = 1 then
     gotoquick = 0
@@ -92,13 +95,13 @@ While 1 = 1
     Shapes.Animate(moving2,-1400,0,1000)
     Program.Delay(1200)
     Goto fakemenu
-  elseif back = 1 then
+  ElseIf back = 1 then
     back = 0
     Sound.PlayClick()
     Sound.Stop(Program.Directory + "\gunmen.mp3")
     Goto main
   EndIf
-endwhile
+EndWhile
 
 quicktitle:
 GraphicsWindow.DrawImage(Program.Directory + "\screen.png",0,0)
@@ -855,6 +858,7 @@ GraphicsWindow.DrawImage(Program.Directory + "\fakedraw.png",0,0)
 Sound.Play(Program.Directory + "\gunmen.mp3")
 GraphicsWindow.KeyDown = fakemenu
 GraphicsWindow.MouseDown = fakemenu1
+
 Sub fakemenu
   If GraphicsWindow.LastKey="A" Then
     gotofake = 1
@@ -920,7 +924,6 @@ While 1 = 1
 endwhile
   
 faketitle:
-gotofake = 0
 GraphicsWindow.DrawImage(Program.Directory + "\faketitle.png",0,0)
 Sound.Play(Program.Directory + "\fakedraw.mp3")
 GraphicsWindow.BrushColor = "Black"
@@ -935,7 +938,7 @@ letit = 1
 GraphicsWindow.KeyDown = fake
 
 Sub fake
-  If GraphicsWindow.LastKey="X" And letit = 1Then
+  If GraphicsWindow.LastKey="X" And letit = 1 Then
     Shapes.ShowShape(okay4)
     Sound.Play(Program.Directory + "\click.mp3")
     Mouse.MouseX = 45
@@ -960,7 +963,7 @@ Sub fake
   ElseIf GraphicsWindow.LastKey="O" Then
     back = 1
   EndIf
-endsub
+EndSub
 
 Sub okay
   If GraphicsWindow.LastKey="Z" And letit = 1 Then
@@ -1010,7 +1013,7 @@ While 1 = 1
     Sound.PlayClick()
     Goto fakemenu
   EndIf
-endwhile
+EndWhile
   
 fake:
 Sound.Stop(Program.Directory + "\fakedraw.mp3")
@@ -1278,6 +1281,7 @@ While 1 = 1
     Goto fakefinal
   EndIf
 EndWhile
+
 second1:
 GraphicsWindow.KeyDown = shoot
 While 1 = 1
@@ -1308,6 +1312,7 @@ If onescore1 = twoscore1 then
   Program.Delay(6000)
   Goto fakeending
 EndIf
+
 Sound.Play(Program.Directory + "\goodears.mp3")
 If twoscore1 > onescore1 then
   Mouse.MouseX = 4
@@ -1394,9 +1399,11 @@ Sub restart2
     goback = 1
   EndIf
 EndSub
+
 Sub restart3
   goback = 1
 EndSub
+
 While 1 = 1
   If goback = 1 Then
     goback = 0
@@ -1454,3 +1461,496 @@ Shapes.Remove(go)
 Shapes.Remove(go2)
 GraphicsWindow.DrawImage(Program.Directory + "\telephone.png",0,0)
 Sound.Play(Program.Directory + "\ding.mp3")
+GraphicsWindow.KeyDown = startgame
+GraphicsWindow.MouseDown = startgame1
+
+Sub startgame
+  If GraphicsWindow.LastKey="A" Then
+    starttele = 1
+  ElseIf GraphicsWindow.LastKey="Left" then
+    gotofakedraw = 1
+  ElseIf GraphicsWindow.LastKey="C" then
+    back = 1
+  EndIf
+EndSub
+
+Sub startgame1
+  starttele = 1
+EndSub
+
+While 1 = 1
+  If starttele = 1 then
+    starttele = 0
+    Sound.Stop(Program.Directory + "\ding.mp3")
+    Sound.PlayClick()
+    Goto telephonetitle
+  ElseIf gotofakedraw = 1 then
+    gotofakedraw = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\ding.mp3")
+    GraphicsWindow.Clear()
+    image2 = Shapes.AddImage(Program.Directory + "\telephone.png")
+    Shapes.HideShape(image2)
+    image = Shapes.AddImage(Program.Directory + "\fakedraw.png")
+    Shapes.HideShape(image)
+    Shapes.Move(image,-1400,0)
+    Shapes.ShowShape(image)
+    Shapes.ShowShape(image2)
+    Shapes.Move(image2,0,0)
+    Shapes.Animate(image,0,0,1000)
+    Shapes.Animate(image2,1400,0,1000)
+    Program.Delay(1200)
+    Goto fakemenu
+  ElseIf back = 1 then
+    back = 0
+    Sound.PlayClick()
+    Sound.Stop(Program.Directory + "\ding.mp3")
+    Goto main
+  EndIf
+EndWhile
+  
+telephonetitle:
+GraphicsWindow.DrawImage(Program.Directory + "\phonetitle.png",0,0)
+Sound.Play(Program.Directory + "\telephonetitle.mp3")
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 150
+good = Shapes.AddText("OK")
+Shapes.HideShape(good)
+Shapes.Move(good,180,430)
+good1 = Shapes.AddText("OK")
+Shapes.HideShape(good1) 
+Shapes.Move(good1,880,430)
+letit = 1
+GraphicsWindow.KeyDown = tele
+
+Sub tele
+  If GraphicsWindow.LastKey="X" And letit = 1 Then
+    Shapes.ShowShape(good)
+    Sound.Play(Program.Directory + "\phone.mp3")
+    Mouse.MouseX = 45
+    Mouse.MouseY = 212
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    GraphicsWindow.KeyDown = good
+    GraphicsWindow.KeyUp = dont
+  ElseIf GraphicsWindow.LastKey="Z" And letit = 1 then
+    Shapes.ShowShape(good1)
+    Sound.Play(Program.Directory + "\tele.mp3")
+    Mouse.MouseX = 30
+    Mouse.MouseY = 324
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    GraphicsWindow.KeyDown = goood
+    GraphicsWindow.KeyUp = dont
+  ElseIf GraphicsWindow.LastKey="O" Then
+    back = 1
+  EndIf
+EndSub
+
+Sub good
+  If GraphicsWindow.LastKey="Z" And letit = 1 Then
+    Sound.Play(Program.Directory + "\tele.mp3")
+    Mouse.MouseX = 30
+    Mouse.MouseY = 324
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Shapes.ShowShape(good1)
+    GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
+    Program.Delay(1000)
+    Sound.Stop(Program.Directory + "\phone.mp3")
+    Sound.Stop(Program.Directory + "\tele.mp3")
+    start = 1
+    letit = 0
+  EndIf
+EndSub
+
+Sub goood
+  If GraphicsWindow.LastKey="X" And letit = 1 then
+    Sound.Play(Program.Directory + "\phone.mp3")
+    Mouse.MouseX = 45
+    Mouse.MouseY = 212
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Shapes.ShowShape(good)
+    GraphicsWindow.DrawImage(Program.Directory + "\IGNORE.jpg",0,0)
+    Program.Delay(1000)
+    Sound.Stop(Program.Directory + "\phone.mp3")
+    Sound.Stop(Program.Directory + "\tele.mp3")
+    start = 1
+    letit = 0
+  EndIf
+EndSub
+
+Sub dont
+EndSub
+
+While 1 = 1
+  If start = 1 then
+    Sound.Stop(Program.Directory + "\telephonetitle.mp3")
+    start = 0
+    Goto telephone
+  ElseIf back = 1 then
+    back = 0
+    Sound.Stop(Program.Directory + "\telephonetitle.mp3")
+    Sound.PlayClick()
+    Goto telephonemenu
+  EndIf
+EndWhile
+
+telephone:
+Shapes.Remove(good)
+Shapes.Remove(good1)
+Sound.Play(Program.Directory + "\dong.mp3")
+anim()
+Program.Delay(3000)
+Sound.Stop(Program.Directory + "\dong.mp3")
+Sound.Play(Program.Directory + "\set.mp3")
+down()
+Program.Delay(1000)
+up1 = 1
+up2 = 1
+down1()    
+
+Sub down1
+  While up1 = 1 And up2 = 1
+    Mouse.MouseX = 82
+    Mouse.MouseY = 439
+    For p = 5 To 28
+      GraphicsWindow.DrawImage(Program.Directory + "\pend\" + p + ".png",250,250)
+    EndFor
+    If up2 = 1 Then
+      For d = 5 To 28
+        GraphicsWindow.DrawImage(Program.Directory + "\pend\" + d + ".png",850,250)
+      EndFor
+    Else
+    EndIf
+    If GraphicsWindow.LastKey="G" Then   
+      GraphicsWindow.DrawImage(Program.Directory + "\ready.png",200,200)
+      Sound.Play(Program.Directory + "\bling.mp3")
+      up1 = 0
+      letit = 0
+      down2()
+    ElseIf GraphicsWindow.LastKey="H" Then
+      GraphicsWindow.DrawImage(Program.Directory + "\ready.png",800,200)
+      Sound.Play(Program.Directory + "\bling.mp3")
+      up2 = 0
+      letit = 0
+      down3()
+    EndIf
+  EndWhile
+EndSub
+
+Sub down2
+  While up2 = 1
+    Mouse.MouseX = 82
+    Mouse.MouseY = 439
+    If up2 = 1 Then
+      For d = 5 To 28
+        GraphicsWindow.DrawImage(Program.Directory + "\pend\" + d + ".png",850,250)
+      EndFor
+    Else
+    EndIf
+    If GraphicsWindow.LastKey="H" Then
+      GraphicsWindow.DrawImage(Program.Directory + "\ready.png",800,200)
+      Sound.Stop(Program.Directory + "\bling.mp3")
+      Sound.Play(Program.Directory + "\bling1.mp3")
+      up2 = 0
+      start = 1
+    EndIf
+  EndWhile
+EndSub
+
+Sub down3
+  While up1 = 1
+    Mouse.MouseX = 82
+    Mouse.MouseY = 439
+    For p = 5 To 28
+      GraphicsWindow.DrawImage(Program.Directory + "\pend\" + p + ".png",250,250)
+    EndFor
+    If GraphicsWindow.LastKey="G" Then
+      GraphicsWindow.DrawImage(Program.Directory + "\ready.png",200,200)
+      Sound.Stop(Program.Directory + "\bling.mp3")
+      Sound.Play(Program.Directory + "\bling1.mp3")
+      up1 = 0
+      start = 1
+    EndIf
+  EndWhile
+EndSub
+
+Sub anim
+  For d = 1 To 42
+    GraphicsWindow.DrawImage(Program.Directory + "\anim\" + d + ".png",0,0)
+  EndFor
+EndSub
+
+Sub down
+  For w = 1 To 46
+    GraphicsWindow.DrawImage(Program.Directory + "\down\" + w + ".png",0,0)
+  EndFor
+EndSub
+ 
+While 1 = 1
+  If start = 1 Then
+    start = 0
+    Sound.Stop(Program.Directory + "\set.mp3")
+    Goto telephonegame
+  EndIf
+EndWhile
+
+telephonegame:
+letit = 1
+letit2 = 1
+GraphicsWindow.DrawImage(Program.Directory + "\ready.png",800,200)
+GraphicsWindow.DrawImage(Program.Directory + "\ready.png",200,200)
+Mouse.MouseX = 1000
+Mouse.MouseY = 1000
+Program.Delay(1500)
+Sound.Stop(Program.Directory + "\bling1.mp3")
+GraphicsWindow.DrawImage(Program.Directory + "\answer\1.png",0,0)
+Program.Delay(1000)
+Sound.Play(Program.Directory + "\answer.mp3")
+answer()
+Program.Delay(5000)
+Sound.Stop(Program.Directory + "\answer.mp3")
+Sound.Play(Program.Directory + "\start.mp3")
+face()
+Sound.Play(Program.Directory + "\ambient.mp3")
+num = 1
+random = Math.GetRandomNumber(4000)
+getrandom:
+If random < 2500 Then
+  random = Math.GetRandomNumber(4000)
+  Goto getrandom
+EndIf
+While (num < random)
+  num = num + 1       
+  GraphicsWindow.DrawText(50000,50000,num)
+EndWhile
+low = 0
+Timer.Interval = 10
+Timer.Tick = tick
+Sound.Stop(Program.Directory + "\start.mp3")
+Sound.Play(Program.Directory + "\ring.mp3")
+GraphicsWindow.KeyDown = pickup
+For r = 1 To 6
+  GraphicsWindow.DrawImage(Program.Directory + "\ring\" + r + ".png",0,0)
+EndFor
+While 1 = 1
+  If pickedup1 = 1 Then
+    Mouse.MouseX = 60
+    Mouse.MouseY = 244
+    uptime1 = (low + " seconds")
+    upscore1 = low
+    pickedup1 = 0
+    Goto upsecond
+  ElseIf pickedup2 = 1 Then
+    Mouse.MouseX = 75
+    Mouse.MouseY = 221
+    uptime2 = (low + " seconds")
+    upscore2 = low
+    pickedup2 = 0
+    Goto upfirst
+  EndIf
+EndWhile
+
+upfirst:
+GraphicsWindow.KeyDown = pickup
+While 1 = 1
+  If pickedup1 = 1 Then
+    Mouse.MouseX = 60
+    Mouse.MouseY = 244
+    uptime1 = (low + " seconds")
+    upscore1 = low
+    pickedup1 = 0
+    Goto phonefinal
+  EndIf
+EndWhile
+
+upsecond:
+GraphicsWindow.KeyDown = pickup
+While 1 = 1
+  If pickedup2 = 1 Then
+    Mouse.MouseX = 75
+    Mouse.MouseY = 221
+    uptime2 = (low + " seconds")
+    upscore2 = low
+    pickedup2 = 0
+    Goto phonefinal
+  EndIf
+EndWhile
+
+phonefinal:
+Sound.Stop(Program.Directory + "\ambient.mp3")
+Program.Delay(2000)
+For fd = 1 To 7
+  GraphicsWindow.DrawImage(Program.Directory + "\fd\" + fd + ".png",0,0)
+EndFor
+GraphicsWindow.Clear()
+Program.Delay(500)
+Sound.Stop(Program.Directory + "\ring.mp3")
+If upscore1 = upscore2 Then
+  GraphicsWindow.BrushColor = "White"
+  GraphicsWindow.FontSize = 150
+  draw1 = Shapes.AddText("Draw")
+  Shapes.HideShape(draw1)
+  Shapes.Move(draw1,430,-200)
+  Shapes.HideShape(draw1)
+  For df = 1 To 76
+    GraphicsWindow.DrawImage(Program.Directory + "\draw\" + df + ".png",0,0)
+  EndFor
+  TextWindow.WriteLine(upscore1)
+  TextWindow.WriteLine(upscore2)
+  Sound.Play(Program.Directory + "\win.mp3")
+  Shapes.ShowShape(draw1)
+  Shapes.Animate(draw1,430,300,2000)
+  Program.Delay(6000)
+  Goto phoneending
+EndIf
+
+GraphicsWindow.BrushColor = "White"
+GraphicsWindow.FontSize = 60
+Sound.Play(Program.Directory + "\win.mp3")
+If upscore2 > upscore1 then
+  Mouse.MouseX = 4
+  Mouse.MouseY = 653
+  Program.Delay(800)
+  Mouse.MouseX = 1000
+  Mouse.MouseY = 1000
+  winup2()
+  timeone1 = Shapes.AddText(uptime2)
+  Shapes.HideShape(timeone1)
+  Shapes.Move(timeone1,750,1000)
+  timetwo1 = Shapes.AddText(uptime1)
+  Shapes.Move(timetwo1,150,1000)
+  Shapes.HideShape(timetwo1)
+  Program.Delay(500)
+  Shapes.ShowShape(timeone1)
+  Shapes.ShowShape(timetwo1)
+  Shapes.Animate(timeone1,750,400,1000)
+  Shapes.Animate(timetwo1,150,400,1000)
+  Goto phoneending
+Else
+  Mouse.MouseX = 30
+  Mouse.MouseY = 136
+  Program.Delay(800)
+  Mouse.MouseX = 1000
+  Mouse.MouseY = 1000
+  winup1()
+  timeone1 = Shapes.AddText(uptime2)
+  Shapes.Move(timeone1,750,1000)
+  Shapes.HideShape(onetime1)
+  timetwo1 = Shapes.AddText(uptime1)
+  Shapes.HideShape(timetwo1)
+  Shapes.Move(timetwo1,150,1000)
+  Program.Delay(500)
+  Shapes.ShowShape(timeone1)
+  Shapes.ShowShape(timetwo1)
+  Shapes.Animate(timeone1,750,400,1000)
+  Shapes.Animate(timetwo1,150,400,1000)
+  Goto phoneending 
+EndIf
+
+phoneending:
+Program.Delay(500)
+GraphicsWindow.FontSize = 30
+home = Shapes.AddImage(Program.Directory + "\home.png")
+gohome = Shapes.AddText("Press the Home Button")
+Shapes.HideShape(home)
+Shapes.Move(home,400,600)
+Shapes.SetOpacity(home,0)
+Shapes.ShowShape(home)
+Shapes.HideShape(gohome)
+Shapes.Move(gohome,500,630)
+Shapes.SetOpacity(gohome,0)
+Shapes.ShowShape(gohome)
+Program.Delay(100)
+Shapes.SetOpacity(home,10)
+Shapes.SetOpacity(gohome,10)
+Program.Delay(100)
+Shapes.SetOpacity(home,30)
+Shapes.SetOpacity(gohome,30)
+Program.Delay(100)
+Shapes.SetOpacity(home,50)
+Shapes.SetOpacity(gohome,50)
+Program.Delay(100)
+Shapes.SetOpacity(home,60)
+Shapes.SetOpacity(gohome,60)
+Program.Delay(100)
+Shapes.SetOpacity(home,80)
+Shapes.SetOpacity(gohome,80)
+Program.Delay(100)
+Shapes.SetOpacity(home,100)
+Shapes.SetOpacity(gohome,100)
+playedphone = 1
+GraphicsWindow.KeyDown = endphone
+GraphicsWindow.MouseDown = endphone1
+
+Sub endphone
+  If GraphicsWindow.LastKey="H" Then
+    goback = 1
+  EndIf
+EndSub
+
+Sub endphone1
+  goback = 1
+EndSub
+
+While 1 = 1
+  If goback = 1 Then
+    goback = 0
+    Sound.Stop(Program.Directory + "\win.mp3")
+    Shapes.Remove(home)
+    Shapes.Remove(gohome)
+    Shapes.Remove(timeone1)
+    Shapes.Remove(timetwo1)
+    Shapes.Remove(draw1)
+    Sound.PlayClick()
+    Goto telephonemenu
+  EndIf
+EndWhile
+
+Sub winup1
+  For v = 1 To 86
+    GraphicsWindow.DrawImage(Program.Directory + "\right\" + v + ".png",0,0)
+  EndFor
+EndSub
+
+Sub winup2
+  For r = 0 To 74
+    GraphicsWindow.DrawImage(Program.Directory + "\left\" + r + ".png",0,0)
+  EndFor
+EndSub
+  
+Sub tick
+  low = low + .010
+EndSub
+
+Sub pickup
+  If GraphicsWindow.LastKey="Q" And letit = 1 Then
+    pickedup1 = 1
+    letit = 0
+    Sound.Stop(Program.Directory + "\up.mp3")
+    Sound.Play(Program.Directory + "\up.mp3")
+  ElseIf GraphicsWindow.LastKey="Space" And letit2 = 1 Then
+    pickedup2 = 1
+    letit2 = 0
+    Sound.Stop(Program.Directory + "\pick.mp3")
+    Sound.Play(Program.Directory + "\pick.mp3")
+  EndIf
+EndSub
+
+Sub answer
+  For a = 1 To 41
+    GraphicsWindow.DrawImage(Program.Directory + "\answer\" + a + ".png",0,0)
+  EndFor
+EndSub
+
+Sub face
+  For s = 1 To 43
+    GraphicsWindow.DrawImage(Program.Directory + "\start\" + s + ".png",0,0)
+  EndFor
+EndSub
