@@ -16,9 +16,9 @@
 * Quick Draw
   * Completed (minor bugs)
 * Fake Draw
-  * Playable (minor bugs, small problems with randomiser)
+  * Completed (minor bugs, small problems with randomiser)
 * Telephone
-  * WIP
+  * Completed
 
 # Changelog
 * v1.0
@@ -57,7 +57,6 @@
     * Word read aloud before image shows up
   * Added "Quick Draw" voice when selected
   * Fixed bug in Quick Draw where the timer would begin too late
-  
 * v1.4
   * Soda Shake is now fully playable
     * Vibration and animations still to be added
@@ -66,3 +65,7 @@
   * Some animations added to Soda Shake <!-- Regarded, unfortunately, as "good enough", otherwise speed would slow down significantly -->
   * Vibrations when soda bursts
   * Telephone minigame added to menu
+* v1.5
+  * Added Telephone
+    * Implemented "Ready" system thought of whilst trying to fall asleep
+  * Minor bug fixes
