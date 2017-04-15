@@ -4,7 +4,7 @@ GraphicsWindow.Width = Desktop.Width
 GraphicsWindow.Top = 0
 GraphicsWindow.Left = 0
 GraphicsWindow.CanResize = "True"
-GraphicsWindow.Title = "1-2-Switch v1.5"
+GraphicsWindow.Title = "1-2-Switch v1.5.1"
 Mouse.HideCursor()  
 main:
 GraphicsWindow.Clear()
@@ -230,9 +230,9 @@ While (num < 30000)
   EndIf
 EndWhile
 Sound.Play(Program.Directory + "\fire.mp3")
-If played = 1 then
-i = 0
-endif
+If played = 1 Then
+  i = 0
+EndIf
 Timer.Interval = 10
 Timer.Tick = next
 Program.Delay(100)
@@ -757,7 +757,6 @@ EndSub
 
 Sub OnTimerTick
   thisnumber = 0
-  TextWindow.WriteLine("Done!")
 EndSub
 
 Sub screenevents
@@ -1138,6 +1137,15 @@ While firednow = 0
         Goto again6
       EndIf
     EndIf
+  ElseIf ran = 7 Then
+    Sound.Play(Program.Directory + "\fire.mp3")
+    l = 0
+    Timer.Interval = 10
+    Timer.Tick = next1
+    firednow = 1
+    Program.Delay(300)
+    fakefire()
+    Goto fired
   ElseIf ran = 9 Then
     Sound.Play(Program.Directory + "\fury.mp3")
     Program.Delay(700)
@@ -1802,8 +1810,6 @@ If upscore1 = upscore2 Then
   For df = 1 To 76
     GraphicsWindow.DrawImage(Program.Directory + "\draw\" + df + ".png",0,0)
   EndFor
-  TextWindow.WriteLine(upscore1)
-  TextWindow.WriteLine(upscore2)
   Sound.Play(Program.Directory + "\win.mp3")
   Shapes.ShowShape(draw1)
   Shapes.Animate(draw1,430,300,2000)
