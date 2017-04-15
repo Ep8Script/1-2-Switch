@@ -69,3 +69,6 @@
   * Added Telephone
     * Implemented "Ready" system thought of whilst trying to fall asleep
   * Minor bug fixes
+* 1.5.1
+  * Gave slightly higher priority to "Fire" in Fake Draw
+  * Removed debugging related messages in the Text Window
