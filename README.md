@@ -1,7 +1,7 @@
 
 
 # 1-2-Switch
-*1-2-Switch* recreation project using Microsoft Small Basic.
+ *1-2-Switch* recreation project using Microsoft Small Basic.
 
 # Requirements
 * PC or laptop
@@ -72,3 +72,5 @@
 * 1.5.1
   * Gave slightly higher priority to "Fire" in Fake Draw
   * Removed debugging related messages in the Text Window
+* 1.5.2
+  * Window can no longer be resized
