@@ -3,8 +3,8 @@ GraphicsWindow.Height = Desktop.Height
 GraphicsWindow.Width = Desktop.Width
 GraphicsWindow.Top = 0
 GraphicsWindow.Left = 0
-GraphicsWindow.CanResize = "True"
-GraphicsWindow.Title = "1-2-Switch v1.5.1"
+GraphicsWindow.CanResize = "false"
+GraphicsWindow.Title = "1-2-Switch v1.5.2"
 Mouse.HideCursor()  
 main:
 GraphicsWindow.Clear()
