@@ -67,7 +67,6 @@
   * Telephone minigame added to menu
 * v1.5
   * Added Telephone
-    * Implemented "Ready" system thought of whilst trying to fall asleep
   * Minor bug fixes
 * 1.5.1
   * Gave slightly higher priority to "Fire" in Fake Draw
