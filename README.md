@@ -26,7 +26,7 @@
   * Created GlovePIE script
 * v1.1
   * Created *1-2-Switch* title screen and menu
-  * Player must move Wiimote to shoot in Quick Draw
+  * Player must now move the Wii Remote to shoot in Quick Draw
   * Added misfire screen in Quick Draw to prevent B from being held down <!-- Thanks for the beta testing, dad -->
   * Added Soda Shake, unplayable
   * Minor bug fixes
