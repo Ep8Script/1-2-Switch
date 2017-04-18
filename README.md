@@ -22,7 +22,8 @@
 
 # Changelog
 * v1.0
-  * Added Quick Draw
+
+* Added Quick Draw
   * Created GlovePIE script
 * v1.1
   * Created *1-2-Switch* title screen and menu
@@ -73,3 +74,6 @@
   * Removed debugging related messages in the Text Window
 * 1.5.2
   * Window can no longer be resized
+* 1.5.3
+  * Scrolling through games is now faster
+  * Added a few more touch controls
