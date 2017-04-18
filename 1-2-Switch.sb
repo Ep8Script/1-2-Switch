@@ -1,10 +1,10 @@
 GraphicsWindow.BackgroundColor = "Black"
 GraphicsWindow.Height = Desktop.Height
 GraphicsWindow.Width = Desktop.Width
+GraphicsWindow.CanResize = "false"
 GraphicsWindow.Top = 0
 GraphicsWindow.Left = 0
-GraphicsWindow.CanResize = "false"
-GraphicsWindow.Title = "1-2-Switch v1.5.2"
+GraphicsWindow.Title = "1-2-Switch v1.5.3"
 Mouse.HideCursor()  
 main:
 GraphicsWindow.Clear()
@@ -12,14 +12,17 @@ GraphicsWindow.DrawImage(Program.Directory + "\main.jpg",25,0)
 Sound.Play(Program.Directory + "\title.mp3")
 GraphicsWindow.KeyDown = go
 GraphicsWindow.MouseDown = go1
+
 Sub go
   If GraphicsWindow.LastKey="A" Then
     gotomenu = 1
   EndIf
-endsub
+EndSub
+
 Sub go1
   gotomenu = 1
-Endsub
+EndSub
+
 While 1 = 1
   If gotomenu = 1 then
     gotomenu = 0
@@ -52,7 +55,18 @@ Sub shakemenu
 EndSub
 
 Sub shakemenu1
-  gotoquick = 1
+  pos = Mouse.MouseX
+  GraphicsWindow.MouseUp = shakemenu2
+EndSub
+
+Sub shakemenu2
+  If Mouse.MouseX < pos - 50 Then
+    playfake = 1
+  ElseIf Mouse.MouseX > pos + 50 Then
+    gotoshake = 1
+  Else
+    gotoquick = 1
+  EndIf
 EndSub
 
 While 1 = 1
@@ -74,9 +88,9 @@ While 1 = 1
     Shapes.ShowShape(screen)
     Shapes.ShowShape(screen2)
     Shapes.Move(screen2,0,0)
-    Shapes.Animate(screen,0,0,1000)
-    Shapes.Animate(screen2,1400,0,1000)
-    Program.Delay(1200)
+    Shapes.Animate(screen,0,0,500)
+    Shapes.Animate(screen2,1400,0,500)
+    Program.Delay(500)
     Goto shaketitle
   ElseIf playfake = 1 then
     playfake = 0
@@ -91,9 +105,9 @@ While 1 = 1
     Shapes.ShowShape(moving)
     Shapes.ShowShape(moving2)
     Shapes.Move(moving2,0,0)
-    Shapes.Animate(moving,0,0,1000)
-    Shapes.Animate(moving2,-1400,0,1000)
-    Program.Delay(1200)
+    Shapes.Animate(moving,0,0,500)
+    Shapes.Animate(moving2,-1400,0,500)
+    Program.Delay(500)
     Goto fakemenu
   ElseIf back = 1 then
     back = 0
@@ -450,13 +464,24 @@ Sub sodamenu
     gotosoda = 1
   ElseIf GraphicsWindow.LastKey="Right" then
     playquick = 1
-  elseif GraphicsWindow.LastKey="C" then
+  ElseIf GraphicsWindow.LastKey="C" then
     back = 1
   EndIf
-endsub
+EndSub
+
 Sub sodamenu1
-  gotosoda = 1
-Endsub
+  pos = Mouse.MouseX
+  GraphicsWindow.MouseUp = sodamenu2
+EndSub
+
+Sub sodamenu2
+  If Mouse.MouseX < pos - 50 Then
+    playquick = 1
+  Else
+    gotosoda = 1
+  EndIf
+EndSub
+
 While 1 = 1
   If gotosoda = 1 then
     gotosoda = 0
@@ -476,17 +501,17 @@ While 1 = 1
     Shapes.ShowShape(img)
     Shapes.ShowShape(img2)
     Shapes.Move(img2,0,0)
-    Shapes.Animate(img,0,0,1000)
-    Shapes.Animate(img2,-1400,0,1000)
-    Program.Delay(1200)
+    Shapes.Animate(img,0,0,500)
+    Shapes.Animate(img2,-1400,0,500)
+    Program.Delay(500)
     Goto quickmenu
-  ElseIf back = 1 then
+  ElseIf back = 1 Then
   back = 0
   Sound.PlayClick()
   Sound.Stop(Program.Directory + "\shake.mp3")
   Goto main
   EndIf
-endwhile
+EndWhile
 earlyone:
 GraphicsWindow.DrawImage(Program.Directory + "\two.jpg",0,0)
 GraphicsWindow.DrawText(800,500,"Quick trigger")
@@ -543,7 +568,7 @@ Sub shake
   ElseIf GraphicsWindow.LastKey="O" Then
     back = 1
   EndIf
-endsub
+EndSub
 
 While 1 = 1
   If start = 1 then
@@ -557,7 +582,8 @@ While 1 = 1
     Sound.PlayClick()
     Goto shaketitle
   EndIf
-endwhile
+EndWhile
+
 sodasplash:
 Sound.Play(Program.Directory + "\intro.mp3")
 sodafade()
@@ -871,8 +897,19 @@ Sub fakemenu
 EndSub
 
 Sub fakemenu1
-  gotofake = 1
-Endsub
+  pos = Mouse.MouseX
+  GraphicsWindow.MouseUp = fakemenu2
+EndSub
+
+Sub fakemenu2
+  If Mouse.MouseX < pos - 50 Then
+    gototele = 1
+  ElseIf Mouse.MouseX > pos + 50 Then
+    gotoquickdraw = 1
+  Else
+    gotofake = 1
+  EndIf
+EndSub
 
 While 1 = 1
   If gotofake = 1 then
@@ -893,9 +930,9 @@ While 1 = 1
     Shapes.ShowShape(move)
     Shapes.ShowShape(move2)
     Shapes.Move(move2,0,0)
-    Shapes.Animate(move,0,0,1000)
-    Shapes.Animate(move2,1400,0,1000)
-    Program.Delay(1200)
+    Shapes.Animate(move,0,0,500)
+    Shapes.Animate(move2,1400,0,500)
+    Program.Delay(500)
     Goto quickmenu
   ElseIf gototele = 1 Then
     gototele = 0
@@ -910,9 +947,9 @@ While 1 = 1
     Shapes.ShowShape(go)
     Shapes.ShowShape(go2)
     Shapes.Move(go2,0,0)
-    Shapes.Animate(go,0,0,1000)
-    Shapes.Animate(go2,-1400,0,1000)
-    Program.Delay(1200)
+    Shapes.Animate(go,0,0,500)
+    Shapes.Animate(go2,-1400,0,500)
+    Program.Delay(500)
     Goto telephonemenu
   ElseIf back = 1 Then
     back = 0
@@ -1475,15 +1512,24 @@ GraphicsWindow.MouseDown = startgame1
 Sub startgame
   If GraphicsWindow.LastKey="A" Then
     starttele = 1
-  ElseIf GraphicsWindow.LastKey="Left" then
+  ElseIf GraphicsWindow.LastKey="Left" Then
     gotofakedraw = 1
-  ElseIf GraphicsWindow.LastKey="C" then
+  ElseIf GraphicsWindow.LastKey="C" Then
     back = 1
   EndIf
 EndSub
 
 Sub startgame1
-  starttele = 1
+  pos = Mouse.MouseX
+  GraphicsWindow.MouseUp = startgame2
+EndSub
+
+Sub startgame2
+  If Mouse.MouseX > pos + 50 Then
+    gotofakedraw = 1
+  Else
+    starttele = 1
+  EndIf
 EndSub
 
 While 1 = 1
@@ -1505,9 +1551,9 @@ While 1 = 1
     Shapes.ShowShape(image)
     Shapes.ShowShape(image2)
     Shapes.Move(image2,0,0)
-    Shapes.Animate(image,0,0,1000)
-    Shapes.Animate(image2,1400,0,1000)
-    Program.Delay(1200)
+    Shapes.Animate(image,0,0,500)
+    Shapes.Animate(image2,1400,0,500)
+    Program.Delay(500)
     Goto fakemenu
   ElseIf back = 1 then
     back = 0
