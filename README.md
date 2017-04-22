@@ -10,14 +10,10 @@
 
 # Minigames
 * Soda Shake
-  * Completed
 * Quick Draw
-  * Completed
 * Fake Draw
-  * Completed
 * Telephone
-  * Completed
-
+  
 # Changelog
 * v1.0
 * Added Quick Draw
