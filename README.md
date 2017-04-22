@@ -15,8 +15,8 @@
 * Telephone
   
 # Changelog
-* v1.0
-* Added Quick Draw
+* v1.0 (*Initial release*)
+  * Added Quick Draw
   * Created GlovePIE script
 * v1.1
   * Created *1-2-Switch* title screen and menu
