@@ -1,5 +1,3 @@
-
-
 # 1-2-Switch
  *1-2-Switch* recreation project using Microsoft Small Basic.
 
@@ -12,17 +10,16 @@
 
 # Minigames
 * Soda Shake
-  * Playable (see v1.4 changelog)
+  * Completed
 * Quick Draw
-  * Completed (minor bugs)
+  * Completed
 * Fake Draw
-  * Completed (minor bugs, small problems with randomiser)
+  * Completed
 * Telephone
   * Completed
 
 # Changelog
 * v1.0
-
 * Added Quick Draw
   * Created GlovePIE script
 * v1.1
@@ -69,11 +66,24 @@
 * v1.5
   * Added Telephone
   * Minor bug fixes
-* 1.5.1
+* v1.5.1
   * Gave slightly higher priority to "Fire" in Fake Draw
   * Removed debugging related messages in the Text Window
-* 1.5.2
+* [v1.5.2](https://www.reddit.com/r/nintendo/comments/65pbmm/12switch_microsoft_small_basic_v152/)
   * Window can no longer be resized
-* 1.5.3
+* v1.5.3
   * Scrolling through games is now faster
   * Added a few more touch controls
+* v2.0
+  * Added title screens on load
+  * Main *1-2-Switch* title screen is now animated
+  * Fixed bug where first game would open immediately from title screen
+  * Updated images for Telephone and Soda Shake
+  * Swapped positions of Telephone and Soda Shake on menu
+  * Replaced "Press the Home Button" with "Play Again" and "+ Game select"
+  * Added more words to Fake Draw
+  * Randomised time between words in Fake Draw
+  * Quick Draw and Fake Draw now detect whether or not you lower your gun
+  * Added game tips
+  * Removed many bugs
+  * Further improvements to overall stability and other minor adjustments have been made to enhance the user experience
