@@ -1,11 +1,11 @@
 GraphicsWindow.BackgroundColor = "Black"
-GraphicsWindow.Height = Desktop.Height
-GraphicsWindow.Width = Desktop.Width
+GraphicsWindow.Width = 1280
+GraphicsWindow.Height = 720
 GraphicsWindow.CanResize = "false"
 dir = Program.Directory + "\files"
 GraphicsWindow.Top = 0
 GraphicsWindow.Left = 0
-GraphicsWindow.Title = "1-2-Switch v2.0"
+GraphicsWindow.Title = "1-2-Switch v2.1"
 Mouse.HideCursor()
 load()
 whichmenu = 1
@@ -36,6 +36,8 @@ For title = 0 To 1209
       Goto fakemenu
     ElseIf whichmenu = 4 Then
       Goto shaketitle
+    ElseIf whichmenu = 5 Then
+      Goto samuraimenu
     EndIf
   EndIf
 EndFor
@@ -626,6 +628,8 @@ EndSub
 shaketitle:
 Shapes.Remove(go)
 Shapes.Remove(go2)
+Shapes.Remove(image3)
+Shapes.Remove(image4)
 GraphicsWindow.Clear() 
 GraphicsWindow.DrawImage(dir + "\soda logo.png",0,0)
 Sound.Play(dir + "\shake.mp3")
@@ -640,7 +644,10 @@ Sub sodamenu
   ElseIf GraphicsWindow.LastKey="Left" Then
     gotofakedraw = 1
     ElseIf GraphicsWindow.LastKey="Up" Then 'sideways Wiimote
-    gotofakedraw = 1
+      gotofakedraw = 1
+    ElseIf GraphicsWindow.LastKey="Right" Then
+      gotosamurai = 1
+      ElseIf GraphicsWindow.LastKey="Down" Then 'sideways Wiimote
   ElseIf GraphicsWindow.LastKey="C" And isallowed = 1 Then
     back = 1
     whichmenu = 4
@@ -657,6 +664,8 @@ EndSub
 Sub sodamenu2
   If Mouse.MouseX > pos + 50 Then
     gotofakedraw = 1
+  ElseIf Mouse.MouseX < pos - 50 Then
+    gotosamurai = 1
   Else
     gotosoda = 1
   EndIf
@@ -685,6 +694,25 @@ While 1 = 1
     Shapes.Animate(image2,1400,0,500)
     Program.Delay(500)
     Goto fakemenu
+  ElseIf gotosamurai = 1 Then
+    gotosamurai = 0
+    gotosodashake = 0
+    Sound.Stop(dir + "\right.mp3")
+    Sound.Play(dir + "\right.mp3")
+    Sound.Stop(dir + "\shake.mp3")
+    GraphicsWindow.Clear()
+    swap2 = Shapes.AddImage(dir + "\soda logo.png")
+    Shapes.HideShape(swap2)
+    swap = Shapes.AddImage(dir + "\samuraitraining.png")
+    Shapes.HideShape(swap)
+    Shapes.Move(swap,1400,0)
+    Shapes.ShowShape(swap)
+    Shapes.ShowShape(swap2)
+    Shapes.Move(swap2,0,0)
+    Shapes.Animate(swap,0,0,500)
+    Shapes.Animate(swap2,-1400,0,500)
+    Program.Delay(500)
+    Goto samuraimenu
   ElseIf back = 1 Then
     back = 0
     Sound.PlayClick()
@@ -1317,7 +1345,11 @@ GraphicsWindow.BrushColor = "White"
 GraphicsWindow.FontSize = 60
 num = 1
 notlowered = 0
-While num < 25000
+rannum = Math.GetRandomNumber(25000)
+While rannum < 16000
+  rannum = Math.GetRandomNumber(25000)
+EndWhile
+While num < rannum
   Mouse.MouseX = 82
   Mouse.MouseY = 439
   num = num + 1
@@ -2143,13 +2175,11 @@ Sub down1
       GraphicsWindow.DrawImage(dir + "\ready.png",200,200)
       Sound.Play(dir + "\bling.mp3")
       up1 = 0
-      letit = 0
       down2()
     ElseIf GraphicsWindow.LastKey="H" Then
       GraphicsWindow.DrawImage(dir + "\ready.png",800,200)
       Sound.Play(dir + "\bling.mp3")
       up2 = 0
-      letit = 0
       down3()
     EndIf
   EndWhile
@@ -2480,4 +2510,536 @@ Sub fadeout
   For f = 1 To 13
     GraphicsWindow.DrawImage(dir + "\fade\out\" + f + ".png",0,0)
   EndFor
+EndSub
+
+samuraimenu:
+Shapes.Remove(swap)
+Shapes.Remove(swap2)
+GraphicsWindow.DrawImage(dir + "\samuraitraining.png",0,0)
+Sound.Play(dir + "\samurai.mp3")
+isallowed = 1
+GraphicsWindow.KeyDown = samuraimenu
+GraphicsWindow.MouseDown = samuraimenu1
+
+Sub samuraimenu
+  If GraphicsWindow.LastKey="A" Then
+    gototraining = 1
+    isallowed = 0
+  ElseIf GraphicsWindow.LastKey="Left" Then
+    gotoshake = 1
+    ElseIf GraphicsWindow.LastKey="Up" Then 'sideways Wiimote
+    gotoshake = 1
+  ElseIf GraphicsWindow.LastKey="C" And isallowed = 1 Then
+    back = 1
+    whichmenu = 5
+    gotomenu = 0
+    title = 0
+  EndIf
+EndSub
+
+Sub samuraimenu1
+  pos = Mouse.MouseX
+  GraphicsWindow.MouseUp = samuraimenu2
+EndSub
+
+Sub samuraimenu2
+  If Mouse.MouseX > pos + 50 Then
+    gotoshake = 1
+  Else
+    gototraining = 1
+  EndIf
+EndSub
+
+While 1 = 1
+  If gototraining = 1 then
+    gototraining = 0
+    Sound.Stop(dir + "\samurai.mp3")
+    Goto samuraititle
+  ElseIf gotoshake = 1 Then
+    gotoshake = 0
+    Sound.Stop(dir + "\left.mp3")
+    Sound.Play(dir + "\left.mp3")
+    Sound.Stop(dir + "\samurai.mp3")
+    GraphicsWindow.Clear()
+    image3 = Shapes.AddImage(dir + "\samuraitraining.png")
+    image4 = Shapes.AddImage(dir + "\soda logo.png")
+    Shapes.HideShape(image4)
+    Shapes.Move(image4,-1400,0)
+    Shapes.ShowShape(image4)
+    Shapes.Move(image3,0,0)
+    Shapes.Animate(image4,0,0,500)
+    Shapes.Animate(image3,1400,0,500)
+    Program.Delay(500)
+    Goto shaketitle
+  ElseIf back = 1 Then
+    back = 0
+    Sound.PlayClick()
+    Sound.Stop(dir + "\samurai.mp3")
+    Goto main
+  EndIf
+EndWhile
+
+samuraititle:
+Sound.Play(dir + "\samuraitraining.mp3")
+samurai()
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 150
+yeah = Shapes.AddText("OK")
+Shapes.HideShape(yeah)
+Shapes.Move(yeah,180,430)
+yeahh = Shapes.AddText("OK")
+Shapes.HideShape(yeahh) 
+Shapes.Move(yeahh,880,430)
+letit = 1
+GraphicsWindow.KeyDown = train
+
+Sub samurai
+  For st = 1 To 73
+    GraphicsWindow.DrawImage(dir + "\samurai\" + st + ".png",0,0)
+  EndFor
+EndSub
+
+Sub train
+  If GraphicsWindow.LastKey="X" And letit = 1 Then
+    Shapes.ShowShape(yeah)
+    Sound.Stop(dir + "\woosh.mp3")
+    Sound.Play(dir + "\woosh.mp3")
+    Mouse.MouseX = 45
+    Mouse.MouseY = 212
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    GraphicsWindow.KeyDown = ye
+  ElseIf GraphicsWindow.LastKey="Z" And letit = 1 then
+    Shapes.ShowShape(yeahh)
+    Sound.Stop(dir + "\woosh1.mp3")
+    Sound.Play(dir + "\woosh1.mp3")
+    Mouse.MouseX = 30
+    Mouse.MouseY = 324
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    GraphicsWindow.KeyDown = yee
+  ElseIf GraphicsWindow.LastKey="O" Then
+    back = 1
+  EndIf
+EndSub
+
+Sub ye
+  If GraphicsWindow.LastKey="Z" And letit = 1 Then
+    Sound.Stop(dir + "\woosh1.mp3")
+    Sound.Play(dir + "\woosh1.mp3")
+    Mouse.MouseX = 30
+    Mouse.MouseY = 324
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Shapes.ShowShape(yeahh)
+    GraphicsWindow.DrawImage(dir + "\IGNORE.jpg",0,0)
+    Program.Delay(1000)
+    Sound.Stop(dir + "\phone.mp3")
+    Sound.Stop(dir + "\woosh.mp3")
+    start = 1
+    letit = 0
+  ElseIf GraphicsWindow.LastKey="O" Then
+    back = 1
+  EndIf
+EndSub
+
+Sub yee
+  If GraphicsWindow.LastKey="X" And letit = 1 Then
+    Sound.Stop(dir + "\woosh.mp3")
+    Sound.Play(dir + "\woosh.mp3")
+    Mouse.MouseX = 45
+    Mouse.MouseY = 212
+    Program.Delay(100)
+    Mouse.MouseX = 1000
+    Mouse.MouseY = 1000
+    Shapes.ShowShape(yeah)
+    GraphicsWindow.DrawImage(dir + "\IGNORE.jpg",0,0)
+    Program.Delay(1000)
+    Sound.Stop(dir + "\woosh.mp3")
+    Sound.Stop(dir + "\woosh1.mp3")
+    start = 1
+    letit = 0
+  ElseIf GraphicsWindow.LastKey="O" Then
+    back = 1
+  EndIf
+EndSub
+
+While 1 = 1
+  If start = 1 Then
+    start = 0
+    Goto samurai
+  ElseIf back = 1 Then
+    back = 0
+    Sound.Stop(dir + "\exit.mp3")
+    Sound.Play(dir + "\exit.mp3")
+    Sound.Stop(dir + "\samuraitraining.mp3")
+    left = Shapes.AddImage(dir + "\samuraitraining.png")
+    Shapes.HideShape(left)
+    Shapes.Move(left,0,-1000)
+    Shapes.ShowShape(left)
+    Shapes.Animate(left,0,0,500)
+    Program.Delay(550)
+    Shapes.Remove(left)
+    Shapes.Remove(yeah)
+    Shapes.Remove(yeahh)
+    Goto samuraimenu
+  EndIf
+EndWhile
+
+samurai:
+Shapes.Remove(yeah)
+Shapes.Remove(yeahh)
+Sound.Stop(dir + "\samuraitraining.mp3")
+Sound.Stop(dir + "\hold.mp3")
+Sound.Play(dir + "\hold.mp3")
+For ho = 1 To 91
+  GraphicsWindow.DrawImage(dir + "\hold\" + ho + ".png",0,0)
+EndFor
+noclap1 = 1
+noclap2 = 1
+letF = 1
+letN = 1
+clap1()
+
+Sub clap1
+  While noclap1 = 1 And noclap2 = 1
+    If GraphicsWindow.LastKey="F" And letF = 1 Then
+      Sound.Stop(dir + "\clap.mp3")
+      Sound.Play(dir + "\clap.mp3")
+      Mouse.MouseX = 45
+      Mouse.MouseY = 212
+      Program.Delay(200)
+      Mouse.MouseX = 1000
+      Mouse.MouseY = 1000
+      Sound.Stop(dir + "\bling.mp3")
+      Sound.Play(dir + "\bling.mp3")
+      For clap = 1 To 26
+        GraphicsWindow.DrawImage(dir + "\leftready\" + clap + ".png",0,0)
+      EndFor
+      clap1 = 0
+      letF = 0
+      clap2()
+    ElseIf GraphicsWindow.LastKey="N" And letN = 1 Then
+      Sound.Stop(dir + "\clap.mp3")
+      Sound.Play(dir + "\clap.mp3")
+      Mouse.MouseX = 30
+      Mouse.MouseY = 324
+      Program.Delay(100)
+      Mouse.MouseX = 1000
+      Mouse.MouseY = 1000
+      Sound.Stop(dir + "\bling.mp3")
+      Sound.Play(dir + "\bling.mp3")
+      For clap1 = 1 To 22
+        GraphicsWindow.DrawImage(dir + "\rightready\" + clap1 + ".png",0,0)
+      EndFor
+      noclap2 = 0
+      letN = 0
+      clap3()
+    EndIf
+  EndWhile
+EndSub
+
+Sub clap2
+  While noclap2 = 1
+    If GraphicsWindow.LastKey="N" And letN = 1 Then
+      Sound.Stop(dir + "\clap1.mp3")
+      Sound.Play(dir + "\clap1.mp3")
+      Mouse.MouseX = 30
+      Mouse.MouseY = 324
+      Program.Delay(200)
+      Mouse.MouseX = 1000
+      Mouse.MouseY = 1000
+      Sound.Stop(dir + "\bling1.mp3")
+      Sound.Play(dir + "\bling1.mp3")
+      For clap1 = 1 To 22
+        GraphicsWindow.DrawImage(dir + "\rightready\" + clap1 + ".png",0,0)
+      EndFor
+      noclap2 = 0
+      letN = 0
+      start = 1
+    EndIf
+  EndWhile
+EndSub
+
+Sub clap3
+  While noclap1 = 1
+    If GraphicsWindow.LastKey="F" And letF = 1 Then
+      Sound.Stop(dir + "\clap1.mp3")
+      Sound.Play(dir + "\clap1.mp3")
+      Mouse.MouseX = 45
+      Mouse.MouseY = 212
+      Program.Delay(200)
+      Mouse.MouseX = 1000
+      Mouse.MouseY = 1000
+      Sound.Stop(dir + "\bling1.mp3")
+      Sound.Play(dir + "\bling1.mp3")
+      For clap = 1 To 26
+        GraphicsWindow.DrawImage(dir + "\leftready\" + clap + ".png",0,0)
+      EndFor
+      noclap1 = 0
+      letF = 0
+      start = 1
+    EndIf
+  EndWhile
+EndSub
+
+forward = 1
+While forward = 1
+  If start = 1 Then
+    start = 0
+    Sound.Stop(dir + "\hold.mp3")
+    forward = 0
+  EndIf
+EndWhile
+
+left = 0
+right = 0
+end = 0
+side = Math.GetRandomNumber(2)
+If side = 1 Then 'Left
+  Sound.Stop(dir + "\leftswings.mp3")
+  Sound.Play(dir + "\leftswings.mp3")
+  For leftfirst = 1 To 94
+    GraphicsWindow.DrawImage(dir + "\leftfirst\" + leftfirst + ".png",0,0)
+  EndFor
+  left1()
+  leftafter:
+  If right = 1 Then
+    right = 0
+    right1()
+    Goto rightafter
+  ElseIf end = 1 Then
+    end = 0
+    Goto samuraiending
+  EndIf
+ElseIf side = 2 Then 'Right
+  Sound.Stop(dir + "\rightswings.mp3")
+  Sound.Play(dir + "\rightswings.mp3")
+  For rightfirst = 1 To 82
+    GraphicsWindow.DrawImage(dir + "\rightfirst\" + rightfirst + ".png",0,0)
+  EndFor
+  Program.Delay(1300)
+  right1()
+  rightafter:
+  If left = 1 Then
+    left = 0
+    left1()
+    Goto leftafter
+  ElseIf end = 1 Then
+    end = 0
+    Goto samuraiending
+  EndIf
+EndIf
+
+Sub left1
+  Sound.Stop(dir + "\readytraining.mp3")
+  Sound.Play(dir + "\readytraining.mp3")
+  For l0 = 1 To 119
+    GraphicsWindow.DrawImage(dir + "\stances\left\" + l0 + ".png",0,0)
+  EndFor
+  leftloop:
+  loop = 1
+  downnum = 1
+  While loop = 1
+    If GraphicsWindow.LastKey="T" Then
+      While downnum < 300
+        GraphicsWindow.DrawText(1000000,1000000,downnum)
+        downnum = downnum + 1
+        If GraphicsWindow.LastKey="N" Then
+          loop = 0
+          Sound.Stop(dir + "\nice.mp3")
+          Sound.Play(dir + "\nice.mp3")
+          Mouse.MouseX = 30
+          Mouse.MouseY = 324
+          Program.Delay(100)
+          Mouse.MouseX = 1000
+          Mouse.MouseY = 1000
+          For rc = 1 To 93
+            GraphicsWindow.DrawImage(dir + "\rightcatch\" + rc + ".png",0,0)
+          EndFor
+          right = 1
+          downnum = 300
+          Goto leftend
+        EndIf
+      EndWhile
+      If right = 0 Then
+        loop = 0
+        Sound.Stop(dir + "\hit.mp3")
+        Sound.Play(dir + "\hit.mp3")
+        For rm = 1 To 84
+          GraphicsWindow.DrawImage(dir + "\rightmiss\" + rm + ".png",0,0)
+          If rm = 6 Then
+            Mouse.MouseX = 30
+            Mouse.MouseY = 324
+          EndIf
+          If rm = 21 Then
+            Mouse.MouseX = 1000
+            Mouse.MouseY = 1000
+          EndIf
+        EndFor
+        Mouse.MouseX = 1000
+        Mouse.MouseY = 1000
+        end = 1
+        leftwin = 1
+      EndIf
+    EndIf
+    Mouse.MouseX = 113
+    Mouse.MouseY = 323
+  EndWhile
+  leftend:
+EndSub 
+
+Sub right1
+  Sound.Stop(dir + "\readytraining.mp3")
+  Sound.Play(dir + "\readytraining.mp3")
+  For r0 = 1 To 93
+    GraphicsWindow.DrawImage(dir + "\stances\right\" + r0 + ".png",0,0)
+  EndFor
+  loop1 = 1
+  downnum1 = 1
+  While loop1 = 1
+    If GraphicsWindow.LastKey="U" Then
+      While downnum1 < 300
+        GraphicsWindow.DrawText(1000000,1000000,downnum1)
+        downnum1 = downnum1 + 1
+        If GraphicsWindow.LastKey="F" Then
+          loop1 = 0
+          Sound.Stop(dir + "\nice.mp3")
+          Sound.Play(dir + "\nice.mp3")
+          Mouse.MouseX = 45
+          Mouse.MouseY = 212
+          Program.Delay(100)
+          Mouse.MouseX = 1000
+          Mouse.MouseY = 1000
+          For lc = 1 To 95
+            GraphicsWindow.DrawImage(dir + "\leftcatch\" + lc + ".png",0,0)
+          EndFor
+          left = 1
+          downnum1 = 300
+          Goto rightend
+        EndIf
+      EndWhile
+      If left = 0 Then
+        loop1 = 0
+        Sound.Stop(dir + "\hit.mp3")
+        Sound.Play(dir + "\hit.mp3")
+        For lm = 1 To 85
+          GraphicsWindow.DrawImage(dir + "\leftmiss\" + lm + ".png",0,0)
+          If lm = 6 Then
+            Mouse.MouseX = 45
+            Mouse.MouseY = 212
+          EndIf
+          If lm = 20 Then
+            Mouse.MouseX = 1000
+            Mouse.MouseY = 1000
+          EndIf
+        EndFor
+        Mouse.MouseX = 1000
+        Mouse.MouseY = 1000
+        end = 1
+        rightwin = 1
+      EndIf 
+    EndIf
+    Mouse.MouseX = 120
+    Mouse.MouseY = 150
+  EndWhile
+  rightend:
+EndSub
+
+samuraiending:
+If leftwin = 1 Then
+  leftwin = 0
+  Sound.Stop(dir + "\game.mp3")
+  Sound.Play(dir + "\game.mp3")
+  For lw = 1 To 17
+    GraphicsWindow.DrawImage(dir + "\leftwin\" + lw + ".png",0,0)
+  EndFor
+  Program.Delay(600)
+  For lwa = 1 To 81
+    GraphicsWindow.DrawImage(dir + "\leftwin\a\" + lwa + ".png",0,0)
+  EndFor
+ElseIf rightwin = 1 Then
+  rightwin = 0
+  Sound.Stop(dir + "\game.mp3")
+  Sound.Play(dir + "\game.mp3")
+  For rw = 1 To 16
+    GraphicsWindow.DrawImage(dir + "\rightwin\" + rw + ".png",0,0)
+  EndFor
+  Program.Delay(1200)
+  For rwa = 1 To 81
+    GraphicsWindow.DrawImage(dir + "\rightwin\a\" + rwa + ".png",0,0)
+  EndFor
+EndIf
+Sound.Stop(dir + "\samuraiend.mp3")
+Sound.Play(dir + "\samuraiend.mp3")
+Program.Delay(500)
+For ast = 1 To 24
+  GraphicsWindow.DrawImage(dir + "\again\quickdraw\" + ast + ".png",0,0)
+EndFor
+letit = 1
+GraphicsWindow.KeyDown = agst
+
+Sub agst
+  If GraphicsWindow.LastKey="O" And letit = 1 Then
+    letit = 0
+    goback = 1
+  ElseIf GraphicsWindow.LastKey="A" And letit = 1 Then
+    againsamurai = 1
+    letit = 0
+    Sound.Stop(dir + "\again.mp3")
+    Sound.Play(dir + "\again.mp3")
+    Program.Delay(1000)
+    GraphicsWindow.Clear()
+  EndIf
+EndSub
+
+While 1 = 1
+  If goback = 1 Then
+    goback = 0
+    Sound.Stop(dir + "\exit.mp3")
+    Sound.Play(dir + "\exit.mp3")
+    Sound.Stop(dir + "\samuraiend.mp3")
+    train = Shapes.AddImage(dir + "\samuraitraining.png")
+    Shapes.HideShape(train)
+    Shapes.Move(train,0,-1000)
+    Shapes.ShowShape(train)
+    Shapes.Animate(train,0,0,500)
+    Program.Delay(500)
+    Shapes.Remove(train)
+    GraphicsWindow.Clear()
+    Goto samuraimenu
+  ElseIf againsamurai = 1 Then
+    againsamurai = 0
+    Sound.Stop(dir + "\beep.mp3")
+    Sound.Play(dir + "\beep.mp3")
+    whichtip = Math.GetRandomNumber(3)
+    If whichtip = 1 Then
+      stip1 = 287
+      stipskip = 277
+    ElseIf whichtip = 2 Then
+      stip1 = 123
+      stipskip = 112
+    ElseIf whichtip = 3 Then
+      stip1 = 175
+      stipskip = 164
+    EndIf
+    For stip = 1 To stip1 
+      GraphicsWindow.DrawImage(dir + "\stip\" + whichtip + "\" + tip + "\" + stip + ".png",0,0)
+      GraphicsWindow.KeyDown = skipstip
+    EndFor
+    Program.Delay(200)
+    Sound.Stop(dir + "\samuraiend.mp3")
+    fadein()
+    GraphicsWindow.Clear()
+    Goto samuraititle
+  EndIf
+EndWhile
+
+Sub skipstip
+  If GraphicsWindow.LastKey="A" Then
+    stip = stipskip
+  EndIf
 EndSub

@@ -1,4 +1,4 @@
-﻿key.A = wiimote.Two or wiimote2.Two  or wiimote.A or wiimote2.A
+﻿key.A = wiimote.Two or wiimote2.Two or wiimote.A or wiimote2.A
 key.B = wiimote.B and wiimote.Shake
 key.V = wiimote2.B and wiimote2.Shake
 key.H = wiimote.Home or wiimote2.Home
@@ -7,12 +7,16 @@ key.Down = wiimote.Down or wiimote2.Down
 key.Left = wiimote.Left or wiimote2.Left
 key.Right = wiimote.Right or wiimote2.Right
 key.C = wiimote.B or wiimote.One or wiimote2.B or wiimote2.One
-key.Space = wiimote2.Shake
+key.Space = wiimote2.Shake and not(mouse.CursorPosX = 75) and not(mouse.CursorPosX = 80)
 key.X = wiimote.B
 key.Z = wiimote2.B
-key.R = Released(key.B or key.V)
+key.L = Released(key.B or key.V)
 key.O = wiimote.Plus or wiimote2.Plus or wiimote.Minus or wiimote2.Minus
-key.Q = wiimote.Shake
+key.Q = wiimote.Shake and not(mouse.CursorPosX = 75) and not(mouse.CursorPosX = 80)
+key.F = wiimote.SwingHorizontal and not(mouse.CursorPosX = 75)
+key.N = wiimote2.SwingHorizontal and not(mouse.CursorPosX = 80)
+key.T = wiimote.SwingVertical and not(mouse.CursorPosX = 80)
+key.U = wiimote2.SwingVertical and not(mouse.CursorPosX = 75)
 
 if wiimote.OnTable and mouse.CursorPosX = 55 Then
 wait 3s
