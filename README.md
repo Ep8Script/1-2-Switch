@@ -1,5 +1,18 @@
 # 1-2-Switch
  *1-2-Switch* recreation project using Microsoft Small Basic.
+ 
+## About this project
+I began this project at the beginning of April 2017 with the idea in mind to create the minigame "Quick Draw" for Wii Homebrew, playable with Wii Remotes. However, I later realised this would be easier to do on PC. I chose Small Basic as my programming choice due to it's simplicity and my knowledge of the language. (However, it's probably the worst program to do such a thing in.) 
+
+After creating a buggy and innaccurate version of Quick Draw, I set out to remake the main menu of *1-2-Switch* in my game, and also added the two games "Soda Shake" &ndash; which was unplayable for a time as I set out to properly figure out ways to achieve it &ndash; and "Fake Draw" (of course, copying some code from Quick Draw).
+
+After completing those two, along with creating a functional Soda Shake game, I set out to more accurately represent these games, working hard to add animations in Small Basic, a tedious task, and making the menus and sounds more alive. After this great achievement, I added Telephone, whilst still continuing to update all four games more accurately, more fun, and with less glitches.
+
+Finally, I added "Samurai Training" after thinking of games that are possible in Small Basic due to its graphics limitations (still holding out to add Milk soon!), and with limited on-screen events and logic required.
+
+While some updates to fix bugs and improvements to make the games more accurate are required, this is where the game is at currently, and as far as it goes I'm quite happy with the process I've made on my project! As a 15 year old without a Switch or the game, it's great!
+
+Thanks for visiting! :D
 
 # Requirements
 * PC or laptop
@@ -11,7 +24,8 @@
 # Minigames
 * Telephone
 * Quick Draw
-* Fake Draw Soda Shake
+* Fake Draw
+* Soda Shake
 * Samurai Training
   * Few issues
   
