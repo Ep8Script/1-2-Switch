@@ -9,10 +9,11 @@
   * Minor understanding of GlovePIE
 
 # Minigames
-* Soda Shake
-* Quick Draw
-* Fake Draw
 * Telephone
+* Quick Draw
+* Fake Draw Soda Shake
+* Samurai Training
+  * Few issues
   
 # Changelog
 * v1.0 (*Initial release*)
@@ -20,7 +21,7 @@
   * Created GlovePIE script
 * v1.1
   * Created *1-2-Switch* title screen and menu
-  * Player must now move the Wii Remote to shoot in Quick Draw
+S  * Player must now move the Wii Remote to shoot in Quick Draw
   * Added misfire screen in Quick Draw to prevent B from being held down <!-- Thanks for the beta testing, dad -->
   * Added Soda Shake, unplayable
   * Minor bug fixes
@@ -76,10 +77,14 @@
   * Fixed bug where first game would open immediately from title screen
   * Updated images for Telephone and Soda Shake
   * Swapped positions of Telephone and Soda Shake on menu
-  * Replaced "Press the Home Button" with "Play Again" and "+ Game select"
+  * Menu now returns to selected game from title screen
+  * Replaced "Press the Home Button" with "Play Again" and "Game Select"
   * Added more words to Fake Draw
   * Randomised time between words in Fake Draw
   * Quick Draw and Fake Draw now detect whether or not you lower your gun
   * Added game tips
   * Removed many bugs
   * Further improvements to overall stability and other minor adjustments have been made to enhance the user experience
+* v2.1
+  * Added Samurai Training
+  * Forced window size to 1280x720 due to graphics sizes and to avoid issues on other PCs
