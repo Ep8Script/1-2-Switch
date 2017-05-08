@@ -44,7 +44,7 @@
     * Win/Lose screen more closely represents actual game
     * Disqualified screen animation added
     * "Fire" appears more vibrant
-    * Various other place
+    * Various other places
   * Changed some images
   * Version number now appears in title
   * Changes to Fake Draw randomiser
