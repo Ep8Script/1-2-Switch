@@ -89,6 +89,9 @@
 * v2.1
   * Added Samurai Training
   * Forced window size to 1280x720 due to graphics sizes and to avoid issues on other PCs
+
+## What am I doing now?
+I currently don't have access to the laptop with the game files, so it's progress has temporarily been delayed until further notice. However, I'm currently working on adding pitch detection for Quick Draw and Fake Draw (meaning it detects where the Wiimote is pointing, to enable DQ for "Shot the dirt"), and making Samurai Training more accurate. Additionally of course, I'm researching more games to add to the simulator!
   
 ## About this project
 I began this project at the beginning of April 2017 with the idea in mind to create the minigame "Quick Draw" for Wii Homebrew, playable with Wii Remotes. However, I later realised this would be easier to do on PC. I chose Small Basic as my programming choice due to it's simplicity and my knowledge of the language. (However, it's probably the worst program to do such a thing in.) 
