@@ -86,7 +86,7 @@
   * Added game tips
   * Removed many bugs
   * Further improvements to overall stability and other minor adjustments have been made to enhance the user experience
-* v2.1
+* [v2.1](https://www.reddit.com/r/nintendo/comments/6dlnvh/12switch_simulator_v21/)
   * Added Samurai Training
   * Forced window size to 1280x720 due to graphics sizes and to avoid issues on other PCs
 
