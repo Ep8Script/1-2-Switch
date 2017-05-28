@@ -36,6 +36,8 @@
   * Added lower.mp3
   * Added early.mp3
   * Bug fixes
+
+
 * v1.3
   * Removed vibration effects from GlovePIE
   * Detected specific mouse movement in GlovePIE script
@@ -92,6 +94,8 @@
 
 ## What next?
 I'm currently working on adding pitch detection for Quick Draw and Fake Draw (meaning it detects where the Wiimote is pointing, to enable DQ for "Shot the dirt"), and making Samurai Training more accurate. Additionally of course, I'm researching more games to add to the simulator!
+
+For future releases, an auto updater will be available. Otherwise, the new files on their own will be there to download, as likely will a full archive of the software.
   
 ## About this project
 I began this project at the beginning of April 2017 with the idea in mind to create the minigame "Quick Draw" for Wii Homebrew, playable with Wii Remotes. However, I later realised this would be easier to do on PC. I chose Small Basic as my programming choice due to it's simplicity and my knowledge of the language. (However, it's probably the worst program to do such a thing in.) 
