@@ -108,4 +108,4 @@ Finally, I added "Samurai Training" after thinking of games that are possible in
 
 While some updates to fix bugs and improvements to make the games more accurate are required, this is where the game is at currently, and as far as it goes I'm quite happy with the process I've made on my project! As a 15 year old without a Switch or the game, it's great!
 
-Thanks for visiting! :D
+Thanks for visiting! For any and all enquiries, please email me at Ep8Script@gmail.com! :D
