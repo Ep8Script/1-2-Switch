@@ -5,7 +5,7 @@ GraphicsWindow.CanResize = "false"
 dir = Program.Directory + "\files"
 GraphicsWindow.Top = 0
 GraphicsWindow.Left = 0
-GraphicsWindow.Title = "1-2-Switch v2.1"
+GraphicsWindow.Title = "1-2-Switch Simulator v2.2"
 Mouse.HideCursor()
 load()
 whichmenu = 1
@@ -127,11 +127,11 @@ Sub shakemenu
     isallowed = 0
   ElseIf GraphicsWindow.LastKey="Left" Then
     gototelephone = 1
-    ElseIf GraphicsWindow.LastKey="Up" Then ' sideways Wiimote
+  ElseIf GraphicsWindow.LastKey="Up" Then ' sideways Wiimote
     gototelephone = 1
   ElseIf GraphicsWindow.LastKey="Right" Then
     playfake = 1
-    ElseIf GraphicsWindow.LastKey="Down" Then 'sideways Wiimote
+  ElseIf GraphicsWindow.LastKey="Down" Then 'sideways Wiimote
     playfake = 1
   ElseIf GraphicsWindow.LastKey="C" And isallowed = 1 Then
     back = 1
@@ -175,8 +175,8 @@ While 1 = 1
     Shapes.ShowShape(screen)
     Shapes.ShowShape(screen2)
     Shapes.Move(screen2,0,0)
-    Shapes.Animate(screen,0,0,500)
-    Shapes.Animate(screen2,1400,0,500)
+    Shapes.Animate(screen,0,0,200)
+    Shapes.Animate(screen2,1400,0,200)
     Program.Delay(500)
     Goto telephonemenu
   ElseIf playfake = 1 then
@@ -193,8 +193,8 @@ While 1 = 1
     Shapes.ShowShape(moving)
     Shapes.ShowShape(moving2)
     Shapes.Move(moving2,0,0)
-    Shapes.Animate(moving,0,0,500)
-    Shapes.Animate(moving2,-1400,0,500)
+    Shapes.Animate(moving,0,0,200)
+    Shapes.Animate(moving2,-1400,0,200)
     Program.Delay(500)
     Goto fakemenu
   ElseIf back = 1 then
@@ -341,7 +341,7 @@ While num < rannum
   Mouse.MouseX = 82
   Mouse.MouseY = 439
   num = num + 1
-  GraphicsWindow.DrawText(50000,50000,num)
+  GraphicsWindow.DrawText(5000,5000,num)
   GraphicsWindow.KeyDown = fire
   If one = 1 Then
     Mouse.MouseX = 75
@@ -643,11 +643,11 @@ Sub sodamenu
     isallowed = 0
   ElseIf GraphicsWindow.LastKey="Left" Then
     gotofakedraw = 1
-    ElseIf GraphicsWindow.LastKey="Up" Then 'sideways Wiimote
-      gotofakedraw = 1
-    ElseIf GraphicsWindow.LastKey="Right" Then
-      gotosamurai = 1
-      ElseIf GraphicsWindow.LastKey="Down" Then 'sideways Wiimote
+  ElseIf GraphicsWindow.LastKey="Up" Then 'sideways Wiimote
+    gotofakedraw = 1
+  ElseIf GraphicsWindow.LastKey="Right" Then
+    gotosamurai = 1
+  ElseIf GraphicsWindow.LastKey="Down" Then 'sideways Wiimote
   ElseIf GraphicsWindow.LastKey="C" And isallowed = 1 Then
     back = 1
     whichmenu = 4
@@ -690,8 +690,8 @@ While 1 = 1
     Shapes.ShowShape(image)
     Shapes.ShowShape(image2)
     Shapes.Move(image2,0,0)
-    Shapes.Animate(image,0,0,500)
-    Shapes.Animate(image2,1400,0,500)
+    Shapes.Animate(image,0,0,200)
+    Shapes.Animate(image2,1400,0,200)
     Program.Delay(500)
     Goto fakemenu
   ElseIf gotosamurai = 1 Then
@@ -709,8 +709,8 @@ While 1 = 1
     Shapes.ShowShape(swap)
     Shapes.ShowShape(swap2)
     Shapes.Move(swap2,0,0)
-    Shapes.Animate(swap,0,0,500)
-    Shapes.Animate(swap2,-1400,0,500)
+    Shapes.Animate(swap,0,0,200)
+    Shapes.Animate(swap2,-1400,0,200)
     Program.Delay(500)
     Goto samuraimenu
   ElseIf back = 1 Then
@@ -1137,11 +1137,11 @@ Sub fakemenu
     isallowed = 0
   ElseIf GraphicsWindow.LastKey="Left" Then
     gotoquickdraw = 1
-    ElseIf GraphicsWindow.LastKey="Up" Then 'sideways Wiimote
+  ElseIf GraphicsWindow.LastKey="Up" Then 'sideways Wiimote
     gotoquickdraw = 1
   ElseIf GraphicsWindow.LastKey="Right" Then
     gotosodashake = 1
-    ElseIf GraphicsWindow.LastKey="Down" Then 'sideways Wiimote
+  ElseIf GraphicsWindow.LastKey="Down" Then 'sideways Wiimote
     gotosodashake = 1
   ElseIf GraphicsWindow.LastKey="C" And isallowed = 1 Then
     back = 1
@@ -1185,8 +1185,8 @@ While 1 = 1
     Shapes.ShowShape(move)
     Shapes.ShowShape(move2)
     Shapes.Move(move2,0,0)
-    Shapes.Animate(move,0,0,500)
-    Shapes.Animate(move2,1400,0,500)
+    Shapes.Animate(move,0,0,200)
+    Shapes.Animate(move2,1400,0,200)
     Program.Delay(500)
     Goto quickmenu
   ElseIf gotosodashake = 1 Then
@@ -1203,8 +1203,8 @@ While 1 = 1
     Shapes.ShowShape(go)
     Shapes.ShowShape(go2)
     Shapes.Move(go2,0,0)
-    Shapes.Animate(go,0,0,500)
-    Shapes.Animate(go2,-1400,0,500)
+    Shapes.Animate(go,0,0,200)
+    Shapes.Animate(go2,-1400,0,200)
     Program.Delay(500)
     Goto shaketitle
   ElseIf back = 1 Then
@@ -1978,7 +1978,7 @@ Sub startgame
     isallowed = 0
   ElseIf GraphicsWindow.LastKey="Right" Then
     playquick = 1
-    ElseIf GraphicsWindow.LastKey="Down" Then 'sideways Wiimote
+  ElseIf GraphicsWindow.LastKey="Down" Then 'sideways Wiimote
     playquick = 1
   ElseIf GraphicsWindow.LastKey="C" And isallowed = 1 Then
     back = 1
@@ -2020,8 +2020,8 @@ While 1 = 1
     Shapes.ShowShape(img)
     Shapes.ShowShape(img2)
     Shapes.Move(img2,0,0)
-    Shapes.Animate(img,0,0,500)
-    Shapes.Animate(img2,-1400,0,500)
+    Shapes.Animate(img,0,0,200)
+    Shapes.Animate(img2,-1400,0,200)
     Program.Delay(500)
     Goto quickmenu
   ElseIf back = 1 then
@@ -2527,7 +2527,7 @@ Sub samuraimenu
     isallowed = 0
   ElseIf GraphicsWindow.LastKey="Left" Then
     gotoshake = 1
-    ElseIf GraphicsWindow.LastKey="Up" Then 'sideways Wiimote
+  ElseIf GraphicsWindow.LastKey="Up" Then 'sideways Wiimote
     gotoshake = 1
   ElseIf GraphicsWindow.LastKey="C" And isallowed = 1 Then
     back = 1
@@ -2567,8 +2567,8 @@ While 1 = 1
     Shapes.Move(image4,-1400,0)
     Shapes.ShowShape(image4)
     Shapes.Move(image3,0,0)
-    Shapes.Animate(image4,0,0,500)
-    Shapes.Animate(image3,1400,0,500)
+    Shapes.Animate(image4,0,0,200)
+    Shapes.Animate(image3,1400,0,200)
     Program.Delay(500)
     Goto shaketitle
   ElseIf back = 1 Then
@@ -2837,7 +2837,7 @@ EndIf
 Sub left1
   Sound.Stop(dir + "\readytraining.mp3")
   Sound.Play(dir + "\readytraining.mp3")
-  For l0 = 1 To 119
+  For l0 = 1 To 110
     GraphicsWindow.DrawImage(dir + "\stances\left\" + l0 + ".png",0,0)
   EndFor
   leftloop:
@@ -2845,8 +2845,8 @@ Sub left1
   downnum = 1
   While loop = 1
     If GraphicsWindow.LastKey="T" Then
-      While downnum < 300
-        GraphicsWindow.DrawText(1000000,1000000,downnum)
+      While downnum < 200
+        GraphicsWindow.DrawText(5000,5000,downnum)
         downnum = downnum + 1
         If GraphicsWindow.LastKey="N" Then
           loop = 0
@@ -2895,15 +2895,15 @@ EndSub
 Sub right1
   Sound.Stop(dir + "\readytraining.mp3")
   Sound.Play(dir + "\readytraining.mp3")
-  For r0 = 1 To 93
+  For r0 = 1 To 88
     GraphicsWindow.DrawImage(dir + "\stances\right\" + r0 + ".png",0,0)
   EndFor
   loop1 = 1
   downnum1 = 1
   While loop1 = 1
     If GraphicsWindow.LastKey="U" Then
-      While downnum1 < 300
-        GraphicsWindow.DrawText(1000000,1000000,downnum1)
+      While downnum1 < 200
+        GraphicsWindow.DrawText(5000,5000,downnum1)
         downnum1 = downnum1 + 1
         If GraphicsWindow.LastKey="F" Then
           loop1 = 0
