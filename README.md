@@ -91,8 +91,11 @@
 * [v2.1](https://www.reddit.com/r/nintendo/comments/6dlnvh/12switch_simulator_v21/)
   * Added Samurai Training
   * Forced window size to 1280x720 due to graphics sizes and to avoid issues on other PCs
-* v2.2
+* [v2.2](https://gbatemp.net/threads/release-1-2-switch-simulator.485016/)
   * Minor changes
+  
+## Download
+https://gbatemp.net/threads/release-1-2-switch-simulator.485016/
 
 ## What next?
 I'm currently working on adding pitch detection for Quick Draw and Fake Draw (meaning it detects where the Wiimote is pointing, to enable DQ for "Shot the dirt"), and making Samurai Training more accurate. Additionally of course, I'm researching more games to add to the simulator!
